@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="vi">
+
+<head>
+    <title>Ohana - Tìm ở ghép, phòng trọ siêu nhanh</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta
+        content="Tham gia vào mạng lưới những người đang tìm phòng - ở ghép như: sinh viên, nhân viên văn phòng ở các trường đại học và các công ty trên toàn Tp.Hồ Chí Minh."
+        name="description">
+    <meta content="Ohana - Tìm ở ghép, phòng trọ siêu nhanh" property="og:title">
+    <meta
+        content="Tham gia vào mạng lưới những người đang tìm phòng - ở ghép như: sinh viên, nhân viên văn phòng ở các trường đại học và các công ty trên toàn Tp.Hồ Chí Minh."
+        property="og:description">
+    <meta name="google-site-verification" content="bbbVVcDJ2-6ztUhHReDKlG3FXt6mc1w8lG58h6hc1D4">
+    <meta name="cf-2fa-verify" content="RIZbXz2uVxjqXFaUpkhMFBkQdT8s1kb7">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style1.css">
+    <link rel="shortcut icon" href="https://ohanaliving.vn/favicon.ico">
+    <link rel="stylesheet"
+        href="data:text/css;charset=utf-8;base64,Y2xvdWRmbGFyZS1hcHBbYXBwPSJmYWNlYm9vay1jb21tZW50cyJdIHsKICBkaXNwbGF5OiBibG9jazsKICBkaXNwbGF5OiBmbGV4Owp9CgpAbWVkaWEgKG1heC13aWR0aDogNzY4cHgpIHsKICBjbG91ZGZsYXJlLWFwcFthcHA9ImZhY2Vib29rLWNvbW1lbnRzIl0gLmZiLWNvbW1lbnRzIHsKICAgIHdpZHRoOiAxMDAlICFpbXBvcnRhbnQ7CiAgfQp9CgpAbWVkaWEgKG1pbi13aWR0aDogNzY4cHgpIHsKICBjbG91ZGZsYXJlLWFwcFthcHA9ImZhY2Vib29rLWNvbW1lbnRzIl0gewogICAgcGFkZGluZzogLjVlbTsKICB9Cn0KCmNsb3VkZmxhcmUtYXBwW2FwcD0iZmFjZWJvb2stY29tbWVudHMiXSAuZmItY29tbWVudHMgewogIGZsZXg6IDAgMCBhdXRvOwp9CgpjbG91ZGZsYXJlLWFwcFthcHA9ImZhY2Vib29rLWNvbW1lbnRzIl1bZGF0YS1wb3NpdGlvbj0ibGVmdCJdIHsKICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7Cn0KCmNsb3VkZmxhcmUtYXBwW2FwcD0iZmFjZWJvb2stY29tbWVudHMiXVtkYXRhLXBvc2l0aW9uPSJjZW50ZXIiXSB7CiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7Cn0KCmNsb3VkZmxhcmUtYXBwW2FwcD0iZmFjZWJvb2stY29tbWVudHMiXVtkYXRhLXBvc2l0aW9uPSJyaWdodCJdIHsKICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kOwp9CgpjbG91ZGZsYXJlLWFwcFthcHA9ImZhY2Vib29rLWNvbW1lbnRzIl0gLmZiLWNvbW1lbnRzIGlmcmFtZVtzdHlsZV0sCmNsb3VkZmxhcmUtYXBwW2FwcD0iZmFjZWJvb2stY29tbWVudHMiXSAuZmItY29tbWVudHMgLmNmLWlmcmFtZS1wbGFjZWhvbGRlciB7CiAgYmFja2dyb3VuZDogI2ZmZiAhaW1wb3J0YW50OwogIGJvcmRlcjogMXB4IHNvbGlkICFpbXBvcnRhbnQ7CiAgYm9yZGVyLWNvbG9yOiAjZTVlNmU5ICNkZmUwZTQgI2QwZDFkNSAhaW1wb3J0YW50OwogIGJvcmRlci1yYWRpdXM6IDNweCAhaW1wb3J0YW50Owp9CgpjbG91ZGZsYXJlLWFwcFthcHA9ImZhY2Vib29rLWNvbW1lbnRzIl0gLmZiLWNvbW1lbnRzIC5jZi1pZnJhbWUtcGxhY2Vob2xkZXIgewogIGRpc3BsYXk6IGZsZXg7CiAgZmxleC1mbG93OiBjb2x1bW47CiAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICBmb250LWZhbWlseTogc2Fucy1zZXJpZjsKICB3aWR0aDogNTUwcHg7CiAgaGVpZ2h0OiAxODBweDsKfQoKY2xvdWRmbGFyZS1hcHBbYXBwPSJmYWNlYm9vay1jb21tZW50cyJdIC5mYi1jb21tZW50cyAuY2YtaWZyYW1lLXBsYWNlaG9sZGVyOjpiZWZvcmUgewogIGNvbnRlbnQ6ICJGYWNlYm9vayBDb21tZW50cyI7CiAgZm9udC1zaXplOiAxLjVlbTsKICBtYXJnaW4tYm90dG9tOiAxZW07CiAgZGlzcGxheTogYmxvY2s7Cn0KCmNsb3VkZmxhcmUtYXBwW2FwcD0iZmFjZWJvb2stY29tbWVudHMiXSAuZmItY29tbWVudHMgLmNmLWlmcmFtZS1wbGFjZWhvbGRlcjo6YWZ0ZXIgewogIGNvbnRlbnQ6ICJQcmV2aWV3IGluIHNlcGFyYXRlIHdpbmRvdyBmb3IgYSBsaXZlIGRlbW8uIjsKICBkaXNwbGF5OiBibG9jazsKfQpjbG91ZGZsYXJlLWFwcFthcHA9ImJhY2stdG8tdG9wLWJ1dHRvbiJdIHsKICBiYWNrZ3JvdW5kOiAjY2NjOwogIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMCwgMCwgLjEpOwogIGN1cnNvcjogcG9pbnRlcjsKICBkaXNwbGF5OiBibG9jazsKICBmb250LWZhbWlseTogc2Fucy1zZXJpZjsKICBmb250LXNpemU6IDQwcHg7CiAgLW1vei1vc3gtZm9udC1zbW9vdGhpbmc6IGdyYXlzY2FsZTsKICAtd2Via2l0LWZvbnQtc21vb3RoaW5nOiBhbnRhbGlhc2VkOwogIGZvbnQtc3R5bGU6IG5vcm1hbDsKICBmb250LXdlaWdodDogbm9ybWFsOwogIGhlaWdodDogNzVweDsKICBsZXR0ZXItc3BhY2luZzogMDsKICBsaW5lLWhlaWdodDogNzVweDsKICBvcGFjaXR5OiAwOwogIHBvaW50ZXItZXZlbnRzOiBub25lOwogIHBvc2l0aW9uOiBmaXhlZDsKICB0YXAtaGlnaGxpZ2h0LWNvbG9yOiB0cmFuc3BhcmVudDsKICB0ZXh0LWFsaWduOiBjZW50ZXI7CiAgdGV4dC1yZW5kZXJpbmc6IG9wdGltaXplTGVnaWJpbGl0eTsKICB0cmFuc2l0aW9uOiBvcGFjaXR5IC4zcyBlYXNlLWluLW91dDsKICAtd2Via2l0LXVzZXItc2VsZWN0OiBub25lOwogICAgIC1tb3otdXNlci1zZWxlY3Q6IG5vbmU7CiAgICAgIC1tcy11c2VyLXNlbGVjdDogbm9uZTsKICAgICAgICAgIHVzZXItc2VsZWN0OiBub25lOwogIHdpZHRoOiA3NXB4OwogIHotaW5kZXg6IDcwMDA7Cn0KCmNsb3VkZmxhcmUtYXBwW2FwcD0iYmFjay10by10b3AtYnV0dG9uIl1bZGF0YS1wb3NpdGlvbl49InRvcCJdIHsKICB0b3A6IDI1cHg7Cn0KCmNsb3VkZmxhcmUtYXBwW2FwcD0iYmFjay10by10b3AtYnV0dG9uIl1bZGF0YS1wb3NpdGlvbl49ImJvdHRvbSJdIHsKICBib3R0b206IDI1cHg7Cn0KCmNsb3VkZmxhcmUtYXBwW2FwcD0iYmFjay10by10b3AtYnV0dG9uIl1bZGF0YS1wb3NpdGlvbiQ9ImxlZnQiXSB7CiAgbGVmdDogMjVweDsKfQoKY2xvdWRmbGFyZS1hcHBbYXBwPSJiYWNrLXRvLXRvcC1idXR0b24iXVtkYXRhLXBvc2l0aW9uJD0icmlnaHQiXSB7CiAgcmlnaHQ6IDI1cHg7Cn0KCmNsb3VkZmxhcmUtYXBwW2FwcD0iYmFjay10by10b3AtYnV0dG9uIl06aG92ZXIgewogIC13ZWJraXQtZmlsdGVyOiBicmlnaHRuZXNzKDEwOCUpOwogICAgICAgICAgZmlsdGVyOiBicmlnaHRuZXNzKDEwOCUpOwp9CgpjbG91ZGZsYXJlLWFwcFthcHA9ImJhY2stdG8tdG9wLWJ1dHRvbiJdOmFjdGl2ZSB7CiAgLXdlYmtpdC10cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsIDFweCwgMCk7CiAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsIDFweCwgMCk7Cn0KCmNsb3VkZmxhcmUtYXBwW2FwcD0iYmFjay10by10b3AtYnV0dG9uIl1bdmlzaWJpbGl0eT0idmlzaWJsZSJdIHsKICBwb2ludGVyLWV2ZW50czogYWxsOwogIG9wYWNpdHk6IDE7Cn0KCmNsb3VkZmxhcmUtYXBwW2FwcD0iYmFjay10by10b3AtYnV0dG9uIl1bc2hhcGU9InJvdW5kZWQiXSB7CiAgYm9yZGVyLXJhZGl1czogNXB4Owp9CgpjbG91ZGZsYXJlLWFwcFthcHA9ImJhY2stdG8tdG9wLWJ1dHRvbiJdW3NoYXBlPSJjaXJjbGUiXSB7CiAgYm9yZGVyLXJhZGl1czogNTAlOwp9CgpAbWVkaWEgKG1heC13aWR0aDogNzg2cHgpIHsKICBjbG91ZGZsYXJlLWFwcFthcHA9ImJhY2stdG8tdG9wLWJ1dHRvbiJdIHsKICAgIGhlaWdodDogNTBweDsKICAgIHdpZHRoOiA1MHB4OwogICAgZm9udC1zaXplOiAyNXB4OwogICAgbGluZS1oZWlnaHQ6IDUwcHg7CiAgICByaWdodDogMTBweDsKICAgIGJvdHRvbTogMTBweDsKICB9CgogIGNsb3VkZmxhcmUtYXBwW2FwcD0iYmFjay10by10b3AtYnV0dG9uIl1bc2hhcGU9InJvdW5kZWQiXSB7CiAgICBib3JkZXItcmFkaXVzOiAzcHg7CiAgfQoKfQoKY2xvdWRmbGFyZS1hcHBbYXBwPSJiYWNrLXRvLXRvcC1idXR0b24iXSAuY2xvdWRmbGFyZS1pY29uIHsKICBib3R0b206IDA7CiAgZGlzcGxheTogYmxvY2s7CiAgZmlsbDogIzY2NjY2NjsKICBmaWxsOiByZ2JhKDAsIDAsIDAsIC40KTsKICBoZWlnaHQ6IDEwMCU7CiAgbGVmdDogMDsKICBwb2ludGVyLWV2ZW50czogbm9uZTsKICBwb3NpdGlvbjogYWJzb2x1dGU7CiAgcmlnaHQ6IDA7CiAgdG9wOiAwOwogIHdpZHRoOiAxMDAlOwp9Cg==">
+    <script async="" src="/modules.0076bf93c385ddf0ff58.js.download" charset="utf-8"></script>
+    <script src="/survey-v2.3716506838f2208ab9e2.js.download"></script>
+    <script type="text/javascript" async="" src="/js"></script>
+    <script src="/rcYKy4zNqcWmfYFdwqRSLq03T08.js"></script>
+    <script async="" src="/chatra.js"></script>
+    <script src="/97ac8shLsjuVQ6aJGATvF-7sVBE.js"></script>
+
+    <script src="/js(1)" async=""></script>
+
+</head>
+
+<body>
+    <div id="root">
+        <div class="app">
+            <div class="_3bjUj">
+                <div class="_1akvT">
+                    <div class="_3bjUj">
+                        <div class="_2k8vl"></div>
+                        <div class="_3Ob4b"><span class="_1vH0j"><span class="icon-share"
+                            style="color: rgb(255, 255, 255); font-size: 24px;"></span><span
+                            class="_3Uk1Q _1UWQe">Tải APP</span></span><span class="_1vH0j"><span
+                            class="icon-create-home-fill"
+                            style="color: rgb(255, 255, 255); font-size: 24px;"></span><span
+                            class="_1xIEY _1UWQe">Đăng phòng dễ dàng</span></span></div>
+                    </div>
+                </div>
+                <div class="QZg_h _18fKS">
+                    <div class="_3oMi4">
+                        <div class="_3OgY1"><a href="/"><img src="/8cc95480cbd2708db10ad4b8de56306a.svg"></a>
+                            <div class="_1_U71">
+                                <div class="_2lKdR">
+                                    <div class="_3p4ES _1vH0j" id="floating-city-dropdown">
+                                        <div class="wj6oE"><span class="icon-location-fill"
+                                                style="color: rgb(247, 52, 134); font-size: 16px;"></span><span
+                                                class="_1qNTb">HCM</span><span class="icon-a-down"
+                                                style="color: rgb(102, 102, 102); font-size: 16px;"></span></div>
+                                    </div>
+                                    <div class="_1pVEQ"><input class="bX6zE"
+                                            placeholder="Tìm kiếm theo địa điểm, quận, tên đường..." value="">
+                                        <div class="_2QckJ"><span class="icon-search"
+                                                style="color: rgb(247, 52, 134); font-size: 24px;"></span></div>
+                                    </div>
+                                </div>
+                                <div class="_1IdUV">
+                                    <ul class="b-CdA" style="width: 123px;">
+                                        <li class="J_X1w _1vH0j" value="HCM">Hồ Chí Minh</li>
+                                        <li class="J_X1w _1vH0j GpngF" value="HN">Hà Nội</li>
+                                    </ul>
+                                    <ul class="b-CdA" style="left: 128px;"></ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="_2fxFG">
+                <div class="FMSe2 _3Nvxb">
+                    <div class="_1say4">
+                        <div class="_1Tf_Z _3x9MP"><span class="_2TvH9">Bộ lọc</span>
+                            <div class="_1vH0j">
+                                <div class="_1Gwyz _1vH0j"><span>Áp dụng</span></div>
+                            </div>
+                        </div>
+                        
+                        <div class="ySUHy">
+                            
+                            <div class="q49VD">
+                                
+                                <div class="wzw4X"><span class="_2dNxP">Giá</span>
+                                    <span
+                                        class="icon-a-down _11wO8 _2enHb"
+                                        style="color: rgb(51, 51, 51); font-size: 20px;"></span></div>
+                                <div class="_1ZENx _1-FEc _39FVJ">
+                                    <div class="oH889">
+                                        <div aria-disabled="false" class="input-range"><span
+                                                class="input-range__label input-range__label--min"><span
+                                                    class="input-range__label-container">0 tr</span></span>
+                                            <div class="input-range__track input-range__track--background">
+                                                <div class="input-range__track input-range__track--active"
+                                                    style="left: 0%; width: 100%;"></div><span
+                                                    class="input-range__slider-container"
+                                                    style="position: absolute; left: 0%;"><span
+                                                        class="input-range__label input-range__label--value"><span
+                                                            class="input-range__label-container">0 tr</span></span>
+                                                    <div aria-valuemax="15" aria-valuemin="0" aria-valuenow="0"
+                                                        class="input-range__slider" draggable="false" role="slider"
+                                                        tabindex="0"></div>
+                                                </span><span class="input-range__slider-container"
+                                                    style="position: absolute; left: 100%;"><span
+                                                        class="input-range__label input-range__label--value"><span
+                                                            class="input-range__label-container">15 tr+</span></span>
+                                                    <div aria-valuemax="15" aria-valuemin="0" aria-valuenow="15"
+                                                        class="input-range__slider" draggable="false" role="slider"
+                                                        tabindex="0"></div>
+                                                </span>
+                                            </div><span class="input-range__label input-range__label--max"><span
+                                                    class="input-range__label-container">15 tr+</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="q49VD">
+                                <div class="wzw4X"><span class="_2dNxP">Tiện ích</span><span
+                                        class="icon-a-down _11wO8 _2enHb"
+                                        style="color: rgb(51, 51, 51); font-size: 20px;"></span></div>
+                                <div class="_1ZENx _1-FEc _1Zx6Q"><label class="_22Yl9" id="room_bathroom"><span
+                                            class="_39t1S"><span class="icon-toilet"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">WC riêng</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="parking_situation"><span class="_39t1S"><span
+                                                class="icon-parking"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Chỗ để xe</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="window"><span class="_39t1S"><span class="icon-window"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Cửa sổ</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="security_guard"><span class="_39t1S"><span
+                                                class="icon-security_guard"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">An ninh</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="room_wifi"><span class="_39t1S"><span class="icon-wifi"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Wifi</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="curfew_situation"><span class="_39t1S"><span
+                                                class="icon-time"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Tự do</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="share_home_as_landlord"><span class="_39t1S"><span
+                                                class="icon-private"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Chủ riêng</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="air_conditioner"><span class="_39t1S"><span
+                                                class="icon-airconditioner"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Máy lạnh</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="water_heater"><span class="_39t1S"><span
+                                                class="icon-water-heater"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Máy nước nóng</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="room_kitchen"><span class="_39t1S"><span class="icon-cook"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Nhà bếp</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="room_refrigerator"><span class="_39t1S"><span
+                                                class="icon-fridge"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Tủ lạnh</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="room_washing_machine"><span class="_39t1S"><span
+                                                class="icon-wash"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Máy giặt</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="loft"><span class="_39t1S"><span class="icon-loft"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Gác lửng</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="room_bed"><span class="_39t1S"><span class="icon-bed"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Giường</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="room_closet"><span class="_39t1S"><span class="icon-closet"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Tủ đồ</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="room_tivi"><span class="_39t1S"><span class="icon-television"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Tivi</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="room_pets_allowed"><span class="_39t1S"><span
+                                                class="icon-pets"
+                                                style="color: rgb(51, 51, 51); font-size: 20px;"></span><span
+                                                class="vcduZ">Thú cưng</span></span><input type="checkbox"
+                                            name="utilitiesCheckbox"><span class="_1akYM"></span></label></div>
+                            </div>
+                            <div class="q49VD">
+                                <div class="wzw4X"><span class="_2dNxP">Loại phòng</span><span
+                                        class="icon-a-down _11wO8 _2enHb"
+                                        style="color: rgb(51, 51, 51); font-size: 20px;"></span></div>
+                                <div class="_1ZENx _1-FEc _1Ed3U"><label class="_22Yl9" id="all"><span
+                                            class="_1trBg">Tất cả</span><input type="checkbox"
+                                            name="roomTypesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="NotShared"><span class="_1trBg">Phòng cho thuê</span><input
+                                            type="checkbox" name="roomTypesCheckbox"><span
+                                            class="_1akYM"></span></label><label class="_22Yl9" id="Shared"><span
+                                            class="_1trBg">Phòng ở ghép</span><input type="checkbox"
+                                            name="roomTypesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="Dormitory"><span class="_1trBg">Kí túc xá</span><input
+                                            type="checkbox" name="roomTypesCheckbox"><span
+                                            class="_1akYM"></span></label><label class="_22Yl9" id="House"><span
+                                            class="_1trBg">Nhà nguyên căn</span><input type="checkbox"
+                                            name="roomTypesCheckbox"><span class="_1akYM"></span></label><label
+                                        class="_22Yl9" id="Apartment"><span class="_1trBg">Căn hộ</span><input
+                                            type="checkbox" name="roomTypesCheckbox"><span
+                                            class="_1akYM"></span></label></div>
+                            </div>
+                            <div class="q49VD">
+                                <div class="wzw4X"><span class="_2dNxP">Giới tính</span><span
+                                        class="icon-a-down _11wO8 _2enHb"
+                                        style="color: rgb(51, 51, 51); font-size: 20px;"></span></div>
+                                <div class="_1ZENx _1-FEc X0uZX"><label class="zOnI7" id="all"><span class="_1HWTz">Tất
+                                            cả</span><input type="radio" name="roomGendersRadio"><span
+                                            class="_30lzl"></span></label><label class="zOnI7" id="male"><span
+                                            class="_1HWTz">Nam</span><input type="radio" name="roomGendersRadio"><span
+                                            class="_30lzl"></span></label><label class="zOnI7" id="female"><span
+                                            class="_1HWTz">Nữ</span><input type="radio" name="roomGendersRadio"><span
+                                            class="_30lzl"></span></label></div>
+                            </div>
+                        </div>
+                        <div class="_1vH0j _3X6_U"><span>Áp dụng</span></div>
+                    </div>
+                </div>
+                <div class="aR5Eq">
+                    <div class="TJKfZ _3Nvxb">
+                        <div class="_1Tf_Z"><span class="_3gUBz"><span class="_2TvH9">Phòng mới nhất</span></span></div>
+                        <div class="_1WjTi">
+                            <div class="nctjX"><a target="_blank" href="room.html">
+                                    <div class="X8svI _2DJkz">
+                                        <div class="pcGxo">
+                                            <div class="_1Gm0b"><img src="/20c8373d39e30d04cde885686abc2987.png"
+                                                    alt="verified-img" class="_1TPDO"></div><img
+                                                src="/property-images_1647699346746_IMG_8554.HEIC" alt="room-img"
+                                                class="_1IOeB">
+                                        </div>
+                                        <div class="_228LH">
+                                            <p class="_3xXyQ">Phòng cho thuê Bầu Cát 2, Quận Tân Bình</p>
+                                            <div class="_27rcQ">
+                                                <div class="_3piN7">
+                                                    <div class="wpwoK"><span class="icon-nav-home"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span>Phòng
+                                                            cho thuê</span></div>
+                                                    <div class="_3TYbx"><span><span class="icon-nav-roomate"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>Nam
+                                                            &amp; Nữ</span><span><span class="icon-squaremeter"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>8m²</span>
+                                                    </div>
+                                                    <div class="_1jHdY"><span class="icon-location"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+                                                            class="uKi2L">86/8 Bầu Cát 2, Phường 12, Quận Tân Bình, Hồ
+                                                            Chí Minh</span></div>
+                                                </div>
+                                                <div class="_1ezn1"><span class="_36r7N">2,4</span><span
+                                                        class="_11LqE">tr/phòng</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a></div>
+                            <div class="nctjX"><a target="_blank" href="room.html">
+                                    <div class="X8svI _2DJkz">
+                                        <div class="pcGxo">
+                                            <div class="_1Gm0b"><img src="/20c8373d39e30d04cde885686abc2987.png"
+                                                    alt="verified-img" class="_1TPDO"></div><img
+                                                src="/property-images_1598331300474_IMG_20200825_115316.jpg"
+                                                alt="room-img" class="_1IOeB">
+                                        </div>
+                                        <div class="_228LH">
+                                            <p class="_3xXyQ">HOMESTAY DORM MẶT TIỀN D5 HÀNG XANH</p>
+                                            <div class="_27rcQ">
+                                                <div class="_3piN7">
+                                                    <div class="wpwoK"><span class="icon-nav-home"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span>Ký
+                                                            túc xá</span></div>
+                                                    <div class="_3TYbx"><span><span class="icon-nav-roomate"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>Nam
+                                                            &amp; Nữ</span><span><span class="icon-squaremeter"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>30m²</span>
+                                                    </div>
+                                                    <div class="_1jHdY"><span class="icon-location"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+                                                            class="uKi2L">145 D5, Phường 25, Quận Bình Thạnh, Hồ Chí
+                                                            Minh</span></div>
+                                                </div>
+                                                <div class="_1ezn1"><span class="_36r7N">1,9</span><span
+                                                        class="_11LqE">tr/người</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a></div>
+                            <div class="nctjX"><a target="_blank" href="room.html">
+                                    <div class="X8svI _2DJkz">
+                                        <div class="pcGxo">
+                                            <div class="_1Gm0b"><img src="/20c8373d39e30d04cde885686abc2987.png"
+                                                    alt="verified-img" class="_1TPDO"></div><img
+                                                src="/property-images_1610865968860_received_329664098218414.jpeg"
+                                                alt="room-img" class="_1IOeB">
+                                        </div>
+                                        <div class="_228LH">
+                                            <p class="_3xXyQ">HOMESTAY DORM Glück Home 1 phường 1 Gò Vấp</p>
+                                            <div class="_27rcQ">
+                                                <div class="_3piN7">
+                                                    <div class="wpwoK"><span class="icon-nav-home"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span>Ký
+                                                            túc xá</span></div>
+                                                    <div class="_3TYbx"><span><span class="icon-nav-roomate"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>Nam
+                                                            &amp; Nữ</span><span><span class="icon-squaremeter"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>20m²</span>
+                                                    </div>
+                                                    <div class="_1jHdY"><span class="icon-location"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+                                                            class="uKi2L">Hẻm 136 Nguyễn Thượng Hiền, Phường 1, Quận Gò
+                                                            Vấp, Hồ Chí Minh</span></div>
+                                                </div>
+                                                <div class="_1ezn1"><span class="_36r7N">1,5</span><span
+                                                        class="_11LqE">tr/người</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a></div>
+                            <div class="nctjX"><a target="_blank" href="room.html">
+                                    <div class="X8svI _2DJkz">
+                                        <div class="pcGxo">
+                                            <div class="_1Gm0b"><img src="/20c8373d39e30d04cde885686abc2987.png"
+                                                    alt="verified-img" class="_1TPDO"></div><img
+                                                src="/2b271aa2-779e-4bb3-b9dc-0a730084fc22-46325561_1975119655915194_6045991570992267264_n.jpg"
+                                                alt="room-img" class="_1IOeB">
+                                        </div>
+                                        <div class="_228LH">
+                                            <p class="_3xXyQ">Ký túc xá quận Thủ Đức</p>
+                                            <div class="_27rcQ">
+                                                <div class="_3piN7">
+                                                    <div class="wpwoK"><span class="icon-nav-home"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span>Ký
+                                                            túc xá</span></div>
+                                                    <div class="_3TYbx"><span><span class="icon-nav-roomate"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>Nam
+                                                            &amp; Nữ</span><span><span class="icon-squaremeter"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>30m²</span>
+                                                    </div>
+                                                    <div class="_1jHdY"><span class="icon-location"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+                                                            class="uKi2L">10 Đường sô 4, Phường Hiệp Bình Phước, Quận
+                                                            Thủ Đức, Hồ Chí Minh</span></div>
+                                                </div>
+                                                <div class="_1ezn1"><span class="_36r7N">1,5</span><span
+                                                        class="_11LqE">tr/người</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a></div>
+                            <div class="nctjX"><a target="_blank" href="room.html">
+                                    <div class="X8svI _2DJkz">
+                                        <div class="pcGxo">
+                                            <div class="_1Gm0b"><img src="/20c8373d39e30d04cde885686abc2987.png"
+                                                    alt="verified-img" class="_1TPDO"></div><img
+                                                src="/property-images_1645104422405_IMG_7299.JPG" alt="room-img"
+                                                class="_1IOeB">
+                                        </div>
+                                        <div class="_228LH">
+                                            <p class="_3xXyQ">Phòng cho thuê Nguyễn Sỹ Sách, Quận Tân Bình</p>
+                                            <div class="_27rcQ">
+                                                <div class="_3piN7">
+                                                    <div class="wpwoK"><span class="icon-nav-home"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span>Phòng
+                                                            cho thuê</span></div>
+                                                    <div class="_3TYbx"><span><span class="icon-nav-roomate"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>Nam
+                                                            &amp; Nữ</span><span><span class="icon-squaremeter"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>20m²</span>
+                                                    </div>
+                                                    <div class="_1jHdY"><span class="icon-location"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+                                                            class="uKi2L">70/15A Nguyễn Sỹ Sách, Phường 15, Quận Tân
+                                                            Bình, Hồ Chí Minh</span></div>
+                                                </div>
+                                                <div class="_1ezn1"><span class="_36r7N">2,2</span><span
+                                                        class="_11LqE">tr/phòng</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a></div>
+                            <div class="nctjX"><a target="_blank" href="room.html">
+                                    <div class="X8svI _2DJkz">
+                                        <div class="pcGxo">
+                                            <div class="_1Gm0b"></div><img
+                                                src="/property-images_1650347558809_IMG_7133.JPG" alt="room-img"
+                                                class="_1IOeB">
+                                        </div>
+                                        <div class="_228LH">
+                                            <p class="_3xXyQ">Căn hộ Điện Biên Phủ , Quận Bình Thạnh</p>
+                                            <div class="_27rcQ">
+                                                <div class="_3piN7">
+                                                    <div class="wpwoK"><span class="icon-nav-home"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span>Căn
+                                                            hộ</span></div>
+                                                    <div class="_3TYbx"><span><span class="icon-nav-roomate"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>Nam
+                                                            &amp; Nữ</span><span><span class="icon-squaremeter"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>32m²</span>
+                                                    </div>
+                                                    <div class="_1jHdY"><span class="icon-location"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+                                                            class="uKi2L">227/8 Điện Biên Phủ , Phường 13, Quận Bình
+                                                            Thạnh, Hồ Chí Minh</span></div>
+                                                </div>
+                                                <div class="_1ezn1"><span class="_36r7N">6,8</span><span
+                                                        class="_11LqE">tr/căn</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a></div>
+                            <div class="nctjX"><a target="_blank" href="room.html">
+                                    <div class="X8svI _2DJkz">
+                                        <div class="pcGxo">
+                                            <div class="_1Gm0b"></div><img
+                                                src="/property-images_1650346713240_IMG_20220419_123720.jpg"
+                                                alt="room-img" class="_1IOeB">
+                                        </div>
+                                        <div class="_228LH">
+                                            <p class="_3xXyQ">💟Q8 Duplex Bancon Giá Rẻ 4trx Sofa Bed Bếp Riêng </p>
+                                            <div class="_27rcQ">
+                                                <div class="_3piN7">
+                                                    <div class="wpwoK"><span class="icon-nav-home"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span>Căn
+                                                            hộ</span></div>
+                                                    <div class="_3TYbx"><span><span class="icon-nav-roomate"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>Nam
+                                                            &amp; Nữ</span><span><span class="icon-squaremeter"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>30m²</span>
+                                                    </div>
+                                                    <div class="_1jHdY"><span class="icon-location"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+                                                            class="uKi2L">516 Hưng Phú, Phường 8, Quận 8, Hồ Chí
+                                                            Minh</span></div>
+                                                </div>
+                                                <div class="_1ezn1"><span class="_36r7N">4,5</span><span
+                                                        class="_11LqE">tr/căn</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a></div>
+                            <div class="nctjX"><a target="_blank" href="room.html">
+                                    <div class="X8svI _2DJkz">
+                                        <div class="pcGxo">
+                                            <div class="_1Gm0b"></div><img
+                                                src="/property-images_1650346355975_IMG_1650335550225_1650346241307.jpg"
+                                                alt="room-img" class="_1IOeB">
+                                        </div>
+                                        <div class="_228LH">
+                                            <p class="_3xXyQ">😱Phú Nhuận!! Duplex Bancon only 7Tr Rộng 45m2 Full Nt</p>
+                                            <div class="_27rcQ">
+                                                <div class="_3piN7">
+                                                    <div class="wpwoK"><span class="icon-nav-home"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span>Căn
+                                                            hộ</span></div>
+                                                    <div class="_3TYbx"><span><span class="icon-nav-roomate"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>Nam
+                                                            &amp; Nữ</span><span><span class="icon-squaremeter"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>45m²</span>
+                                                    </div>
+                                                    <div class="_1jHdY"><span class="icon-location"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+                                                            class="uKi2L">8A Cầm Bá Tước, Phường 1, Quận Phú Nhuận, Hồ
+                                                            Chí Minh</span></div>
+                                                </div>
+                                                <div class="_1ezn1"><span class="_36r7N">7</span><span
+                                                        class="_11LqE">tr/căn</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a></div>
+                            <div class="nctjX"><a target="_blank" href="room.html">
+                                    <div class="X8svI _2DJkz">
+                                        <div class="pcGxo">
+                                            <div class="_1Gm0b"></div><img
+                                                src="/property-images_1650337587033_IMG_2234.JPEG" alt="room-img"
+                                                class="_1IOeB">
+                                        </div>
+                                        <div class="_228LH">
+                                            <p class="_3xXyQ">Căn hộ có cửa sổ, full nội thất gần cầu Nguyễn Văn Cừ</p>
+                                            <div class="_27rcQ">
+                                                <div class="_3piN7">
+                                                    <div class="wpwoK"><span class="icon-nav-home"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span>Phòng
+                                                            cho thuê</span></div>
+                                                    <div class="_3TYbx"><span><span class="icon-nav-roomate"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>Nam
+                                                            &amp; Nữ</span><span><span class="icon-squaremeter"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>25m²</span>
+                                                    </div>
+                                                    <div class="_1jHdY"><span class="icon-location"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+                                                            class="uKi2L">288 Dương Bá Trạc, Phường 1, Quận 8, Hồ Chí
+                                                            Minh</span></div>
+                                                </div>
+                                                <div class="_1ezn1"><span class="_36r7N">5,5</span><span
+                                                        class="_11LqE">tr/phòng</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a></div>
+                            <div class=""><a target="_blank" href="room.html">
+                                    <div class="X8svI _2DJkz">
+                                        <div class="pcGxo">
+                                            <div class="_1Gm0b"></div><img
+                                                src="/property-images_1597432048205_IMG_2679.JPG" alt="room-img"
+                                                class="_1IOeB">
+                                        </div>
+                                        <div class="_228LH">
+                                            <p class="_3xXyQ">Kí túc xá Nguyễn Trãi, Q5 cho Nữ</p>
+                                            <div class="_27rcQ">
+                                                <div class="_3piN7">
+                                                    <div class="wpwoK"><span class="icon-nav-home"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span>Ký
+                                                            túc xá</span></div>
+                                                    <div class="_3TYbx"><span><span class="icon-nav-roomate"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>Nữ</span><span><span
+                                                                class="icon-squaremeter"
+                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span>35m²</span>
+                                                    </div>
+                                                    <div class="_1jHdY"><span class="icon-location"
+                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+                                                            class="uKi2L">129 Nguyễn Trãi, Phường 2, Quận 5, Hồ Chí
+                                                            Minh</span></div>
+                                                </div>
+                                                <div class="_1ezn1"><span class="_36r7N">1,6</span><span
+                                                        class="_11LqE">tr/người</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a></div>
+                            <div class="_1RkT-">
+                                <div class="_3l_fA"><span class="_2Cf4k _2jTB6">first</span><span
+                                        class="_18QWa _2jTB6">prev</span><span class="_2jTB6 _2oguF">1</span><span
+                                        class="_2jTB6">2</span><span class="_2jTB6">3</span><span
+                                        class="_2jTB6">4</span><span class="_2jTB6">5</span><span
+                                        class="_2jTB6 _3kWYf">next</span><span class="_2jTB6 _2zswP">last</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="_14r3G">
+                <div class="_1El-8">
+                    <div class="_2azpq"><img src="/5a087bcc3917e489e3d6b7e58cb9b113.svg">
+
+                    </div>
+                    <div class="MWFfY"><a target="_blank"
+                            href="https://www.ohanaliving.vn/terms-and-policies"><span>Điều khoản và chính
+                                sách</span></a>
+                        <div><span>Copyright © DOONG.CO PTE. LTD - 2018 All Rights Reserved</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

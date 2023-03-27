@@ -1,0 +1,47 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.7'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'vn.tg'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+ //   implementation 'org.springframework.boot:spring-boot-starter-security'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'mysql:mysql-connector-java'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.6.6'
+    implementation group: 'com.cloudinary', name: 'cloudinary-http44', version: '1.32.1'
+    implementation group: 'com.cloudinary', name: 'cloudinary-taglib', version: '1.32.1'
+    implementation group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.16.2'
+    implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '7.0.4.Final'
+    implementation group: 'com.google.api-client', name: 'google-api-client', version: '1.34.1'
+    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean

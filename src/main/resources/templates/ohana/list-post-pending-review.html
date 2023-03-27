@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/resources/bootstrap-5.0.2/css/bootstrap.min.css">
+    <th:block th:replace="/ohana/layout/head :: head('Ohana - Tìm ở ghép, phòng trọ siêu nhanh')"/>
+</head>
+
+<body>
+<div class="container">
+
+    <div class="_3bjUj">
+        <!--header-->
+        <th:block th:replace="/ohana/layout/header :: header"/>
+    </div>
+
+
+    <div class="body ">
+        <div class="row align-items-start">
+            <br>
+            <th:block th:replace="/ohana/layout/list/status-post :: status-post"/>
+            <table class="table align-middle mb-0 bg-white" id="tbPendingReview">
+
+                <thead class="bg-light">
+                <tr>
+                    <th>Tên bài đăng</th>
+                    <th>Tên người dùng</th>
+                    <th>Ngày đăng</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--footer-->
+<th:block th:replace="/ohana/layout/footer :: footer"/>
+<th:block th:replace="/ohana/layout/script :: script"/>
+<script>
+    let page = {
+        url: {
+            getAllPendingReview: App.BASE_URL_API + "/posts/list-post-pending-review",
+            getAllCategories: App.BASE_URL_API + "/categories",
+            getAllUtilities: App.BASE_URL_API + "/utilities",
+            getAllProvinces: App.BASE_URL_PROVINCE,
+            doCreatePost: App.BASE_URL_API + "/posts/postNews",
+
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        initializeControlEvent: {}
+
+    }
+    let post = new Post();
+    let user = new User();
+
+
+    page.commands.getAllPendingReview = () => {
+        $.ajax({
+            type: "GET",
+            url: page.url.getAllPendingReview
+        }).done(function (data) {
+            $("#tbPendingReview tbody").html('');
+            data.forEach((item, index) => {
+                post = item;
+                user = post.user;
+                let str = `
+                    <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img src=${post.thumbnailUrl}" alt=""
+                                 style="width: 45px; height: 45px" class="rounded-circle"/>
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">${post.title}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1">${user.fullName}</p>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1">${post.createdAt}</p>
+                    </td>
+
+                </tr>`;
+                $("#tbPendingReview tbody").prepend(str);
+            });
+        }).fail(function () {
+            showError('Error')
+        })
+    }
+    $("#btnPendingReview").on('click', function () {
+        page.commands.getAllPendingReview();
+    })
+
+    page.loadData =() =>{
+        page.commands.getAllPendingReview();
+    }
+
+    $(function () {
+        page.loadData();
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,597 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+
+  <!-- Title -->
+  <title>Users | Front - Admin &amp; Dashboard Template</title>
+
+  <th:block th:include="dashboard/layout/head :: head"/>
+</head>
+
+<body class="footer-offset">
+
+  <!-- ONLY DEV -->
+
+  <!-- Builder -->
+  <th:block th:include="dashboard/layout/builder :: builder"/>
+  <!-- End Builder Toggle -->
+
+  <!-- JS Preview mode only -->
+  <th:block th:include="dashboard/layout/header :: header"/>
+
+  <!--SideBar-->
+  <th:block th:include="dashboard/layout/sideBar :: sideBar"/>
+  <!--End SideBar-->
+
+  <!--  Sidebar Compact-->
+  <th:block th:include="dashboard/layout/sidebarCompact :: sidebarCompact"/>
+  <!--  End Sidebar Compact-->
+
+  <!-- END ONLY DEV -->
+
+  <!-- Search Form -->
+  <div id="searchDropdown" class="hs-unfold-content dropdown-unfold search-fullwidth d-md-none">
+    <form class="input-group input-group-merge input-group-borderless">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="tio-search"></i>
+        </div>
+      </div>
+
+      <input class="form-control rounded-0" type="search" placeholder="Search in front" aria-label="Search in front">
+
+      <div class="input-group-append">
+        <div class="input-group-text">
+          <div class="hs-unfold">
+            <a class="js-hs-unfold-invoker" href="javascript:;" data-hs-unfold-options='{
+                   "target": "#searchDropdown",
+                   "type": "css-animation",
+                   "animationIn": "fadeIn",
+                   "hasOverlay": "rgba(46, 52, 81, 0.1)",
+                   "closeBreakpoint": "md"
+                 }'>
+              <i class="tio-clear tio-lg"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- End Search Form -->
+
+  <!-- ========== HEADER ========== -->
+
+  <!-- ========== END HEADER ========== -->
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <!-- Navbar Vertical -->
+
+  <!-- End Navbar Vertical -->
+
+  <main id="content" role="main" class="main">
+    <!-- Content -->
+    <div class="content container-fluid">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row align-items-end">
+          <div class="col-sm mb-2 mb-sm-0">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb breadcrumb-no-gutter">
+                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Người dùng</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Danh sách người dùng</li>
+              </ol>
+            </nav>
+
+            <h1 class="page-header-title">NGƯỜI DÙNG</h1>
+          </div>
+        </div>
+        <!-- End Row -->
+      </div>
+      <!-- End Page Header -->
+
+      <!-- Stats -->
+      <div class="row gx-2 gx-lg-3">
+        <form  th:action="@{/shop}" th:object="${cart}" method="post">
+        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+          <!-- Card -->
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2">Total users</h6>
+
+              <div class="row align-items-center gx-2" id="total">
+                <div class="col">
+                  <span class="js-counter display-4 text-dark" id="total-user">24</span>
+                  <span th:text="${cart.countItemQuantity()}"></span>
+
+                </div>
+
+
+              </div>
+              <!-- End Row -->
+            </div>
+          </div>
+          <!-- End Card -->
+        </div>
+
+        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+          <!-- Card -->
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2">Active members</h6>
+
+              <div class="row align-items-center gx-2">
+                <div class="col">
+                  <span class="js-counter display-4 text-dark">12</span>
+                  <span class="text-body font-size-sm ml-1">from 11</span>
+                </div>
+
+                <div class="col-auto">
+                  <span class="badge badge-soft-success p-1">
+                    <i class="tio-trending-up"></i> 1.2%
+                  </span>
+                </div>
+              </div>
+              <!-- End Row -->
+            </div>
+          </div>
+          <!-- End Card -->
+        </div>
+
+        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+          <!-- Card -->
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2">New/returning</h6>
+
+              <div class="row align-items-center gx-2">
+                <div class="col">
+                  <span class="js-counter display-4 text-dark">56</span>
+                  <span class="display-4 text-dark">%</span>
+                  <span class="text-body font-size-sm ml-1">from 48.7</span>
+                </div>
+
+                <div class="col-auto">
+                  <span class="badge badge-soft-danger p-1">
+                    <i class="tio-trending-down"></i> 2.8%
+                  </span>
+                </div>
+              </div>
+              <!-- End Row -->
+            </div>
+          </div>
+          <!-- End Card -->
+        </div>
+
+        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+          <!-- Card -->
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2">Active members</h6>
+
+              <div class="row align-items-center gx-2">
+                <div class="col">
+                  <span class="js-counter display-4 text-dark">28.6</span>
+                  <span class="display-4 text-dark">%</span>
+                  <span class="text-body font-size-sm ml-1">from 28.6%</span>
+                </div>
+
+                <div class="col-auto">
+                  <span class="badge badge-soft-secondary p-1">0.0%</span>
+                </div>
+              </div>
+              <!-- End Row -->
+            </div>
+          </div>
+          <!-- End Card -->
+        </div>
+        </form>
+      </div>
+      <!-- End Stats -->
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+          <div class="row justify-content-between align-items-center flex-grow-1">
+            <div class="col-sm-6">
+              <div class="d-sm-flex justify-content-sm-end align-items-sm-center">
+                <!-- Datatable Info -->
+                <div id="datatableCounterInfo" class="mr-2 mb-2 mb-sm-0" style="display: none;">
+                  <div class="d-flex align-items-center">
+                    <span class="font-size-sm mr-3">
+                      <span id="datatableCounter">0</span>
+                      Selected
+                    </span>
+                    <a class="btn btn-sm btn-outline-danger" href="javascript:;">
+                      <i class="tio-delete-outlined"></i> KHOÁ
+                    </a>
+                  </div>
+                </div>
+                <!-- End Datatable Info -->
+
+                <!-- Unfold -->
+
+                <!-- End Unfold -->
+
+                <!-- Unfold -->
+
+                <!-- End Unfold -->
+              </div>
+            </div>
+          </div>
+          <!-- End Row -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Table -->
+        <div class="table-responsive datatable-custom">
+          <table id="datatable"
+            class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
+            data-hs-datatables-options='{
+                     "columnDefs": [{
+                        "targets": [0, 7],
+                        "orderable": false
+                      }],
+                     "order": [],
+                     "info": {
+                       "totalQty": "#datatableWithPaginationInfoTotalQty"
+                     },
+                     "search": "#datatableSearch",
+                     "entries": "#datatableEntries",
+                     "pageLength": 15,
+                     "isResponsive": false,
+                     "isShowPaging": false,
+                     "pagination": "datatablePagination"
+                   }'>
+            <thead class="thead-light">
+              <tr>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>SĐT</th>
+                <th>Địa chỉ</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+            <th:block th:each="user : ${users}">
+              <tr th:id="'tr_'+ ${user.id}">
+                <td>
+                    <div class="avatar avatar-circle">
+                      <img class="avatar-img" src="/resources/dashboard/img/160x160/img10.jpg" alt="Image Description">
+                    </div>
+                    <div class="ml-3">
+                      <span class="d-block h5 text-hover-primary mb-0" th:text="${user.fullName}">
+                        <i class="tio-verified text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Top endorsed"></i>
+                      </span>
+                    </div>
+
+                </td>
+
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.phone}"></td>
+                <td th:text="${user.address}"></td>
+<!--
+                <td>
+                  <button type="button" class="btn btn-outline-primary upgrade" th:data-id="${user.id}">
+                    <i class="fa fa-edit">Nâng Cấp</i>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-outline-danger delete"
+                          th:data-id="${user.id}">
+                    <i class="fa fa-ban">Xoá</i>
+                  </button>
+                </td>
+              </tr>
+            </th:block>
+
+            </tbody>
+          </table>
+        </div>
+        <!-- End Table -->
+
+        <!-- Footer -->
+        <div class="card-footer">
+          <!-- Pagination -->
+          <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
+            <div class="col-sm mb-2 mb-sm-0">
+              <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
+                <span class="mr-2">Showing:</span>
+
+                <!-- Select -->
+                <select id="datatableEntries" class="js-select2-custom" data-hs-select2-options='{
+                            "minimumResultsForSearch": "Infinity",
+                            "customClass": "custom-select custom-select-sm custom-select-borderless",
+                            "dropdownAutoWidth": true,
+                            "width": true
+                          }'>
+                  <option value="10">10</option>
+                  <option value="15" selected="">15</option>
+                  <option value="20">20</option>
+                </select>
+                <!-- End Select -->
+
+                <span class="text-secondary mr-2">of</span>
+
+                <!-- Pagination Quantity -->
+                <span id="datatableWithPaginationInfoTotalQty"></span>
+              </div>
+            </div>
+
+            <div class="col-sm-auto">
+              <div class="d-flex justify-content-center justify-content-sm-end">
+                <!-- Pagination -->
+                <nav id="datatablePagination" aria-label="Activity pagination"></nav>
+              </div>
+            </div>
+          </div>
+          <!-- End Pagination -->
+        </div>
+        <!-- End Footer -->
+      </div>
+      <!-- End Card -->
+    </div>
+    <!-- End Content -->
+
+    <!-- Footer -->
+
+    <th:block th:include="dashboard/layout/footer :: footer"/>
+
+    <!-- End Footer -->
+  </main>
+  <!-- ========== END MAIN CONTENT ========== -->
+
+  <!-- ========== SECONDARY CONTENTS ========== -->
+  <th:block th:include="dashboard/layout/secondaryContent :: secondaryContent"/>
+  <!-- ========== END SECONDARY CONTENTS ========== -->
+
+  <th:block th:include="dashboard/layout/script :: script"/>
+
+
+
+  <!-- JS Plugins Init. -->
+  <script>
+    $(document).on('ready', function () {
+      // ONLY DEV
+      // =======================================================
+
+      if (window.localStorage.getItem('hs-builder-popover') === null) {
+        $('#builderPopover').popover('show')
+          .on('shown.bs.popover', function () {
+            $('.popover').last().addClass('popover-dark')
+          });
+
+        $(document).on('click', '#closeBuilderPopover', function () {
+          window.localStorage.setItem('hs-builder-popover', true);
+          $('#builderPopover').popover('dispose');
+        });
+      } else {
+        $('#builderPopover').on('show.bs.popover', function () {
+          return false
+        });
+      }
+
+      // END ONLY DEV
+      // =======================================================
+
+
+      // BUILDER TOGGLE INVOKER
+      // =======================================================
+      $('.js-navbar-vertical-aside-toggle-invoker').click(function () {
+        $('.js-navbar-vertical-aside-toggle-invoker i').tooltip('hide');
+      });
+
+
+      // INITIALIZATION OF MEGA MENU
+      // =======================================================
+      var megaMenu = new HSMegaMenu($('.js-mega-menu'), {
+        desktop: {
+          position: 'left'
+        }
+      }).init();
+
+
+
+      // INITIALIZATION OF NAVBAR VERTICAL NAVIGATION
+      // =======================================================
+      var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
+
+
+      // INITIALIZATION OF TOOLTIP IN NAVBAR VERTICAL MENU
+      // =======================================================
+      $('.js-nav-tooltip-link').tooltip({ boundary: 'window' })
+
+      $(".js-nav-tooltip-link").on("show.bs.tooltip", function (e) {
+        if (!$("body").hasClass("navbar-vertical-aside-mini-mode")) {
+          return false;
+        }
+      });
+
+
+      // INITIALIZATION OF UNFOLD
+      // =======================================================
+      $('.js-hs-unfold-invoker').each(function () {
+        var unfold = new HSUnfold($(this)).init();
+      });
+
+
+      // INITIALIZATION OF FORM SEARCH
+      // =======================================================
+      $('.js-form-search').each(function () {
+        new HSFormSearch($(this)).init()
+      });
+
+
+      // INITIALIZATION OF SHOW PASSWORD
+      // =======================================================
+      $('.js-toggle-password').each(function () {
+        new HSTogglePassword(this).init()
+      });
+
+
+      // INITIALIZATION OF FILE ATTACH
+      // =======================================================
+      $('.js-file-attach').each(function () {
+        var customFile = new HSFileAttach($(this)).init();
+      });
+
+
+      // INITIALIZATION OF TABS
+      // =======================================================
+      $('.js-tabs-to-dropdown').each(function () {
+        var transformTabsToBtn = new HSTransformTabsToBtn($(this)).init();
+      });
+
+
+      // INITIALIZATION OF STEP FORM
+      // =======================================================
+      $('.js-step-form').each(function () {
+        var stepForm = new HSStepForm($(this), {
+          finish: function () {
+            $("#addUserStepFormProgress").hide();
+            $("#addUserStepFormContent").hide();
+            $("#successMessageContent").show();
+          }
+        }).init();
+      });
+
+
+      // INITIALIZATION OF MASKED INPUT
+      // =======================================================
+      $('.js-masked-input').each(function () {
+        var mask = $.HSCore.components.HSMask.init($(this));
+      });
+
+
+      // INITIALIZATION OF SELECT2
+      // =======================================================
+      $('.js-select2-custom').each(function () {
+        var select2 = $.HSCore.components.HSSelect2.init($(this));
+      });
+
+
+      // INITIALIZATION OF COUNTERS
+      // =======================================================
+      $('.js-counter').each(function () {
+        var counter = new HSCounter($(this)).init();
+      });
+
+
+      // INITIALIZATION OF DATATABLES
+      // =======================================================
+      var datatable = $.HSCore.components.HSDatatables.init($('#datatable'), {
+        dom: 'Bfrtip',
+        buttons: [
+          {
+            extend: 'copy',
+            className: 'd-none'
+          },
+          {
+            extend: 'excel',
+            className: 'd-none'
+          },
+          {
+            extend: 'csv',
+            className: 'd-none'
+          },
+          {
+            extend: 'pdf',
+            className: 'd-none'
+          },
+          {
+            extend: 'print',
+            className: 'd-none'
+          },
+        ],
+        select: {
+          style: 'multi',
+          selector: 'td:first-child input[type="checkbox"]',
+          classMap: {
+            checkAll: '#datatableCheckAll',
+            counter: '#datatableCounter',
+            counterInfo: '#datatableCounterInfo'
+          }
+        },
+        language: {
+          zeroRecords: '<div class="text-center p-4">' +
+            '<img class="mb-3" src="./assets/svg/illustrations/sorry.svg" alt="Image Description" style="width: 7rem;">' +
+            '<p class="mb-0">No data to show</p>' +
+            '</div>'
+        }
+      });
+
+      $('#export-copy').click(function () {
+        datatable.button('.buttons-copy').trigger()
+      });
+
+      $('#export-excel').click(function () {
+        datatable.button('.buttons-excel').trigger()
+      });
+
+      $('#export-csv').click(function () {
+        datatable.button('.buttons-csv').trigger()
+      });
+
+      $('#export-pdf').click(function () {
+        datatable.button('.buttons-pdf').trigger()
+      });
+
+      $('#export-print').click(function () {
+        datatable.button('.buttons-print').trigger()
+      });
+
+      $('.js-datatable-filter').on('change', function () {
+        var $this = $(this),
+          elVal = $this.val(),
+          targetColumnIndex = $this.data('target-column-index');
+
+        datatable.column(targetColumnIndex).search(elVal).draw();
+      });
+
+      $('#datatableSearch').on('mouseup', function (e) {
+        var $input = $(this),
+          oldValue = $input.val();
+
+        if (oldValue == "") return;
+
+        setTimeout(function () {
+          var newValue = $input.val();
+
+          if (newValue == "") {
+            // Gotcha
+            datatable.search('').draw();
+          }
+        }, 1);
+      });
+
+
+      // INITIALIZATION OF QUICK VIEW POPOVER
+      // =======================================================
+      $('#editUserPopover').popover('show');
+
+      $(document).on('click', '#closeEditUserPopover', function () {
+        $('#editUserPopover').popover('dispose');
+      });
+
+      $('#editUserModal').on('show.bs.modal', function () {
+        $('#editUserPopover').popover('dispose');
+      });
+
+      // DARK POPOVER
+      // =======================================================
+      $('[data-toggle="popover-dark"]').on('shown.bs.popover', function () {
+        $('.popover').last().addClass('popover-dark')
+      })
+    });
+  </script>
+
+  <!-- IE Support -->
+  <script>
+    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="./assets/vendor/babel-polyfill/polyfill.min.js"><\/script>');
+  </script>
+</body>
+
+</html>

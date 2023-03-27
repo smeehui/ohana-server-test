@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paginationjs example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/resources/paginationjs-master/paginationjs-master/dist/pagination.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div id="wrapper">
+    <section>
+        <div class="data-container"></div>
+        <div id="pagination-demo1"></div>
+    </section>
+</div>
+
+<script src="/resources/js/jquery-3.6.0.js"></script>
+<script src="/resources/paginationjs-master/paginationjs-master/src/pagination.js"></script>
+<script>
+$(function() {
+  (function(name) {
+    var container = $('#pagination-' + name);
+    var sources = function () {
+      var result = [];
+
+      for (var i = 1; i < 196; i++) {
+        result.push(i);
+      }
+
+      return result;
+    }();
+
+    var options = {
+      dataSource: sources,
+      callback: function (response, pagination) {
+        window.console && console.log(response, pagination);
+
+        var dataHtml = '<ul>';
+
+        $.each(response, function (index, item) {
+          dataHtml += '<li>' + item + '</li>';
+        });
+
+        dataHtml += '</ul>';
+          console.log(dataHtml);
+        container.prev().html(dataHtml);
+      }
+    };
+
+    // $.pagination(container, options);
+
+    container.addHook('beforeInit', function () {
+      window.console && console.log('beforeInit...');
+    });
+    container.pagination(options);
+
+    container.addHook('beforePageOnClick', function () {
+      window.console && console.log('beforePageOnClick...');
+      //return false
+    });
+  })('demo1');
+
+})
+</script>
+</body>
+</html>

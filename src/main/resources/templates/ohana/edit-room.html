@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/resources/bootstrap-5.0.2/css/bootstrap.min.css">
+    <th:block th:replace="/ohana/layout/head :: head('Ohana - Tìm ở ghép, phòng trọ siêu nhanh')"/>
+    <style>
+        .col-md-3 {
+            float: left;
+        }
+
+        .pd-25 {
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        .pd {
+            padding: 10px;
+        }
+
+        /*    css upload file*/
+        .image_container {
+            height: 120px;
+            width: 200px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        .image_container img {
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+        }
+
+        .image_container span {
+            top: -6px;
+            right: 8px;
+            color: red;
+            font-size: 28px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .img_avatar {
+            height: 120px;
+            width: 200px;
+        }
+
+        /*.cover-image {*/
+        /*    position: absolute;*/
+        /*    bottom: -10px;*/
+        /*    background-image: linear-gradient(rgba(206, 141, 206, 0.91), #f517e9);*/
+        /*}*/
+
+        /*.position-relative {*/
+        /*    position: relative;*/
+        /*}*/
+    </style>
+
+
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1057.0" data-gr-ext-installed="" cz-shortcut-listen="true">
+<th:block th:replace="/ohana/layout/modal/modal-loading :: modal-loading "/>
+<div class="container">
+    <div class="_3bjUj ">
+        <!--header-->
+        <th:block th:replace="/ohana/layout/header :: header(${userLogin})"/>
+    </div>
+
+
+    <div class="_2fxFG">
+        <form action="" style="background-color: #FFFFFF" id="frmEdit">
+            <h1 class="text-center" style="color: rgb(31, 113, 244)">Thông tin phòng</h1></br>
+
+            <div class="row justify-content-center pd-25">
+                <div class="col-12">
+                    <p class="fs-5">Loại phòng</p>
+                    <div id="kindOfRoomUp">
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <div class="row justify-content-center pd-25">
+                <div class="col-12">
+                    <p class="fs-5">Sức chứa (người)</p>
+                    <input type="number" name="capacityUp" id="capacityUp" class="form-control"
+                           placeholder="Nhập số người"
+                           aria-label="First name">
+                </div>
+            </div>
+
+            <div class="row justify-content-center pd-25">
+                <div class="col-12">
+                    <p class="fs-5">Giới tính</p>
+                    <div id="genderUp">
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row justify-content-center pd-25">
+                <div class="col-12">
+                    <p class="fs-5">Diện tích (m<sup>2</sup>)</p>
+
+                    <input type="number" class="form-control" placeholder="Nhập diện tích phòng" name="areaUp"
+                           id="areaUp"
+                           aria-label="First name">
+                </div>
+            </div>
+            <div class="row justify-content-center pd-25">
+                <div class="col-12">
+                    <p class="fs-5">Chi phí (VND)</p>
+                    <input type="number" class="form-control" placeholder="Nhập giá cho thuê" name="priceUp"
+                           id="priceUp"
+                           aria-label="First name">
+                </div>
+            </div>
+            <div class="row justify-content-center pd-25">
+
+                <div class="col-12">
+                    <p class="fs-5">Địa chỉ</p>
+                </div>
+            </div>
+            <div class="row justify-content-center pd-25">
+                <div class="col-3">
+                    <label for="provinceUp" class="form-label">Tỉnh</label>
+                    <select class="form-select" name="province" id="provinceUp">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <label for="districtUp" class="form-label">Quận/Huyện</label>
+                    <select class="form-select" name="province" id="districtUp">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <label for="wardUp" class="form-label">Xã/Thị trấn</label>
+                    <select class="form-select" name="province" id="wardUp">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <label for="locationDetailUp" class="form-label">Tên đường,số nhà</label>
+                    <input type="text" class="form-control" name="locationDetailUp" id="locationDetailUp"
+                           placeholder="28/Nguyễn Tri Phương">
+                </div>
+            </div>
+            <div class="row justify-content-center pd-25">
+                <div class="col-12">
+                    <p class="fs-5">Tiện ích</p>
+                    <div id="divUtilities" class="form-group"></div>
+
+                </div>
+
+            </div>
+            <div class="row justify-content-center pd-25">
+                <div class="col-12">
+                    <p class="fs-5">Tiêu đề bài đăng</p>
+                    <input type="text" name="titleUp" id="titleUp" class="form-control"
+                           placeholder="Kí túc xá quận Thủ Đức">
+                </div>
+            </div>
+            <div class="row justify-content-center pd-25">
+                <div class="col-12">
+                    <p class="fs-5">Mô tả thông tin chi tiết</p>
+                    <textarea rows="5" id="descriptionUp" name="descriptionUp" class="form-control" placeholder="Ví dụ:
+- Phòng trọ 30m2 đường Nguyễn Xí, Bình Thạnh
+
+Nên viết tiếng Việt có dấu
+Không:
+      - Không chèn giá và số điện thoại ở tiêu đề"></textarea>
+                </div>
+            </div>
+            <div class="row justify-content-center pd-25">
+                <p for="avatarCreate" class="fs-5">Ảnh bìa</p>
+                <div class="col-12 ">
+                    <input type="file" class="form-control view-avatar" onchange="image_select_cover(this)"
+                           name="coverImage"
+                           id="coverImage">
+                    <img id="img-preview" class="img-preview img_avatar"
+                         src="/resources/ohana/img/imagedefault.jpg"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="container mt-3 w-100">
+        <div class="card shadow-sm w-100">
+            <div class="card-header d-flex justify-content-between">
+                <h4>Danh sách ảnh</h4>
+                <form class="form" action="#" method="post" id="form">
+                    <input type="file" name="Image" id="image" multiple="" class="d-none" onchange="image_select(this)">
+                    <button class="btn btn-sm btn-primary" type="button"
+                            onclick="document.getElementById('image').click()">Choose Images
+                    </button>
+                </form>
+            </div>
+
+            <div class="card-body d-flex flex-wrap justify-content-start" id="container">
+                <!-- image preview -->
+            </div>
+            <label id="checkQuantityImage"></label>
+        </div>
+    </div>
+    <div class="text-center pd">
+        <button type="button" id="btnUpdate" class="btn btn-success btn-edit">Cập nhật</button>
+    </div>
+
+
+    <!--</div>-->
+</div>
+<th:block th:replace="/ohana/layout/footer :: footer"/>
+
+<th:block th:replace="/ohana/layout/script :: script"/>
+<script>
+    $(".view-avatar").change(function () {
+        const src = URL.createObjectURL(this.files[0]);
+        this.parentElement.getElementsByClassName('img-preview')[0].src = src;
+    })
+</script>
+<script th:inline="javascript">
+
+    let page = {
+        url: {
+            getAllCategories: App.BASE_URL_API + "/categories",
+            getAllUtilities: App.BASE_URL_API + "/utilities",
+            getAllGenders: App.BASE_URL_API + "/genders",
+            getAllProvinces: App.BASE_URL_PROVINCE,
+            doCreatePost: App.BASE_URL_API + "/posts/post-news",
+            doEditPost: App.BASE_URL_API + "/posts/edit",
+            doCreatePreview: App.BASE_URL_API + "/posts/post-preview",
+            redirectAllListPost: App.DOMAIN + "/list-post",
+
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        initializeControlEvent: {}
+
+    }
+
+    let post = new Post();
+    let rentHouse = new RentHouse();
+    let locationRegion = new LocationRegion();
+
+    let postDTO = new PostDTO();
+    let rentHouseDTO = new RentHouseDTO();
+    let locationDTO = new LocationDTO();
+    post = [[${postEdit}]];
+    // console.log(post)
+    rentHouse = post.rentHouse;
+    locationRegion = post.location;
+    let form = new FormData();
+
+
+    $("#provinceUp").on("change", function () {
+        let provinceId = $("#provinceUp").val();
+        page.commands.getAllDistrict(provinceId).then(() => {
+            let districtId = $("#districtUp").val();
+            page.commands.getAllWard(districtId);
+        });
+    })
+    $("#districtUp").on("change", function () {
+        let districtId = $("#districtUp").val();
+        page.commands.getAllWard(districtId);
+    })
+
+    $(".btn-edit, #btnPreview").on("click", (e) => {
+
+        rentHouseDTO.capacity = +$("#capacityUp").val();
+        rentHouseDTO.gender = +$('input[type="radio"][name="genderUp"]:checked').val();
+        rentHouseDTO.area = $("#areaUp").val();
+        rentHouseDTO.price = +$("#priceUp").val();
+
+        locationDTO.provinceId = $("#provinceUp").val();
+        locationDTO.provinceName = $("#provinceUp").find('option:selected').text();
+        locationDTO.districtId = $("#districtUp").val();
+        locationDTO.districtName = $("#districtUp").find('option:selected').text();
+        locationDTO.wardId = $("#wardUp").val();
+        locationDTO.wardName = $("#wardUp").find('option:selected').text();
+        locationDTO.locationDetail = $("#locationDetailUp").val();
+
+        postDTO.id = post.id;
+        postDTO.title = $("#titleUp").val();
+        postDTO.categoryId = +$('input[type="radio"][name="kindOfRoomUp"]:checked').val();
+        postDTO.description = $("#descriptionUp").val();
+        postDTO.location = locationDTO;
+        postDTO.rentHouse = rentHouseDTO;
+        //poster
+        postDTO.images = imageAdds;
+        let favorite = [];
+        $.each($("input[name='utilitiesCheckbox']:checked"), function () {
+            favorite.push(+$(this).val());
+        });
+        postDTO.utilities = favorite;
+
+        thisOnclick = $(e.target);
+        $("#frmEdit").submit();
+
+    })
+
+
+    function doEditPost(post) {
+        $("#loadingModal").modal("show");
+        $.ajax({
+            type: "PUT",
+            url: page.url.doEditPost,
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: post
+        }).done(function (mess) {
+            $("#loadingModal").modal("hide");
+            location.href = page.url.redirectAllListPost;
+            showSuccess(mess)
+        }).fail(function (x) {
+            showError("Cập nhật bài viết không thành công")
+            // let str = ``;
+            // if (jqXHR.responseJSON) {
+            //     if (jqXHR.responseJSON.message) {
+            //         str += `<label id="message-error" class="error" for="message">${jqXHR.responseJSON.message}</lable><br>`;
+            //     } else {
+            //         $.each(jqXHR.responseJSON, function (key, value) {
+            //             str += `<label id="${key}-error" class="error" for="${key}">${value}</lable><br>`;
+            //             $("#" + key).addClass("error");
+            //         });
+            //     }
+            // } else {
+            //     str += `<label id= "message-error" class= "error" for= "message">${App.ERROR_400}</label>`;
+            // }
+            // $("#createModal .modal-alert-danger").removeClass('hide').addClass('show').html(str);
+        })
+    }
+
+    page.commands.getAllCategories = () => {
+        $.ajax({
+            type: "GET",
+            url: page.url.getAllCategories
+        }).done(function (data) {
+            data.forEach(item => {
+                let str = `
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="kindOfRoomUp" id="kindOfRoomUp_${item.id}"
+                                   value="${item.id}">
+                            <label class="form-check-label" for="kindOfRoomUp_${item.id}">${item.name}</label>
+                        </div>
+                    `;
+                $("#kindOfRoomUp").prepend(str);
+            });
+            $('#kindOfRoomUp_' + post.category.id).prop('checked', true);
+        }).fail(function () {
+            showError('Error')
+        })
+    }
+    page.commands.getAllUtilities = () => {
+        $.ajax({
+            type: "GET",
+            url: page.url.getAllUtilities
+        }).done(function (data) {
+            data.forEach((item, index) => {
+                $('#divUtilities').append(`
+                    <div class="col-md-3">
+                        <label class="_22Yl9" id="${item.id}">
+                            <span class="${item.icon}">
+                                <span>${item.name}</span>
+                            </span>
+                            <input id="checkBox_${item.id}" class="check-box" value="${item.id}" type="checkbox" name="utilitiesCheckbox">
+                            <span class="_1akYM"></span>
+                        </label>
+                    </div>
+                `);
+            });
+            post.utilities.forEach(item => {
+                $('#checkBox_' + item.id).prop('checked', true);
+            })
+
+        }).fail(function () {
+            showError('Error')
+        })
+    }
+    page.commands.getAllGenders = () => {
+        $.ajax({
+            type: "GET",
+            url: page.url.getAllGenders
+        }).done(function (data) {
+            data.forEach(item => {
+                let str = `  <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="genderUp" id="genderUp_${item.id}"
+                                   value="${item.id}">
+                            <label class="form-check-label" for="genderUp_${item.id}">${item.name}</label>
+                        </div>`;
+                $("#genderUp").append(str);
+            });
+            $('#genderUp_' + rentHouse.gender.id).prop('checked', true);
+        }).fail(function () {
+            showError('Error')
+        })
+    }
+    page.commands.getAllProvince = () => {
+        return $.ajax({
+            type: "GET",
+            url: page.url.getAllProvinces
+        }).done(function (data) {
+            let str;
+            let provinces = data.results;
+            $.each(provinces, (index, item) => {
+                str += `
+                <option value="${item.province_id}">${item.province_name}</option>
+               `;
+                $("#provinceUp").html(str);
+            })
+
+        }).fail(function () {
+            showError('Get all provinces fail')
+        })
+    }
+    page.commands.getAllDistrict = (provinceId) => {
+        return $.ajax({
+            type: "GET",
+            url: page.url.getAllProvinces + "/district/" + provinceId
+        }).done(function (data) {
+            // console.log(data)
+            let str;
+            let districts = data.results;
+            $.each(districts, (index, item) => {
+                str += `
+                <option value="${item.district_id}">${item.district_name}</option>
+               `;
+                $("#districtUp").html(str);
+
+            })
+
+        }).fail(function () {
+            showError('Get all district fail')
+        })
+    }
+    page.commands.getAllWard = (districtId) => {
+        return $.ajax({
+            type: "GET",
+            url: page.url.getAllProvinces + "/ward/" + districtId
+        }).done(function (data) {
+            // console.log(data)
+            let str;
+            let wards = data.results;
+            $.each(wards, (index, item) => {
+                str += `
+                <option value="${item.ward_id}">${item.ward_name}</option>
+               `;
+                $("#wardUp").html(str);
+            })
+
+        }).fail(function () {
+            showError('Get all ward fail')
+        })
+    }
+
+    $("#frmEdit").validate({
+        rules: {
+            kindOfRoomUp: {
+                required: true
+            },
+            capacityUp: {
+                required: true,
+                min: 1
+            },
+            genderUp: {
+                required: true,
+            },
+            areaUp: {
+                required: true,
+                min: 10
+            },
+            priceUp: {
+                required: true,
+                maxlength: 9,
+                min: 0
+            },
+            locationDetailUp: {
+                required: true,
+            },
+            titleUp: {
+                required: true,
+                maxlength: 50,
+            },
+            descriptionUp: {
+                required: true,
+                maxlength: 1500,
+                minlength: 10,
+            }
+        },
+        messages: {
+
+            kindOfRoomUp: {
+                required: "Vui lòng chọn loại phòng</br>"
+            },
+            capacityUp: {
+                required: "Vui lòng nhập sức chứa",
+                min: "Số người phải lớn hơn 0"
+            },
+            genderUp: {
+                required: "Vui chọn giới tính</br>",
+            },
+            areaUp: {
+                required: "Vui lòng nhập diện tích",
+                min: "Diện tích phải lớn hơn 10 m2"
+            },
+            priceUp: {
+                required: "Vui lòng nhập giá",
+                maxlength: "Vui lòng nhập giá ít hơn 999.999.999",
+                min: "Giá phải từ 0 trở đi",
+            },
+            locationDetailUp: {
+                required: "Vui lòng nhập địa chỉ cụ thể"
+            },
+            titleUp: {
+                required: "Vui lòng nhập tiêu đề",
+                maxlength: "Vui lòng nhập ít hơn 50 kí tự",
+            },
+            descriptionUp: {
+                required: "Vui lòng nhập mô tả",
+                maxlength: "Vui lòng nhập ít hơn 1500 kí tự",
+                minlength: "Vui lòng nhập nhiều hơn 10 kí tự",
+            }
+        }, errorPlacement: function (error, element) {
+            if (element.is(":radio") && $(element).attr('id') === "kindOfRoomUp_1") {
+                error.appendTo(element.parents('#kindOfRoomUp'));
+            } else if (element.is(":radio") && $(element).attr('id') === "genderUp_1") {
+                error.appendTo(element.parents('#genderUp'));
+            } else { // This is the default behavior
+                error.insertAfter(element);
+            }
+        },
+        submitHandler: function () {
+            $("#checkQuantityImage").html('');
+            if (postDTO.images.length + postMediaOrl.length < 5) {
+                let str = `<label id="title-error" class="error" for="title">Vui lòng chọn trên 5 ảnh</label>`;
+                $("#checkQuantityImage").append(str);
+            } else if (postDTO.images.length + postMediaOrl.length > 10) {
+                let str = `<label id="title-error" class="error" for="title">Vui lòng chọn ít hơn 10 ảnh</label>`;
+                $("#checkQuantityImage").append(str);
+            } else {
+                form.append('location.provinceId', postDTO.location.provinceId);
+                form.append('location.provinceName', postDTO.location.provinceName);
+                form.append('location.districtId', postDTO.location.districtId);
+                form.append('location.districtName', postDTO.location.districtName);
+                form.append('location.wardId', postDTO.location.wardId);
+                form.append('location.wardName', postDTO.location.wardName);
+                form.append('location.locationDetail', postDTO.location.locationDetail);
+                form.append('rentHouse.price', postDTO.rentHouse.price);
+                form.append('rentHouse.capacity', postDTO.rentHouse.capacity);
+                form.append('rentHouse.area', postDTO.rentHouse.area);
+                form.append('rentHouse.genderId', postDTO.rentHouse.gender);
+                // form.append('poster', postDTO.poster);
+                form.append('utilities', postDTO.utilities);
+                form.append('id', postDTO.id);
+                form.append('title', postDTO.title);
+                form.append('categoryId', postDTO.categoryId);
+                form.append('description', postDTO.description);
+                console.log('imageCover', imageCover)
+                if ($("#coverImage").val() === '') {
+                    form.append('postMediaThumbnail.id', imageCover.id);
+                    form.append('postMediaThumbnail.file', new File([null], null, {
+                        type: null,
+                    }));
+                } else {
+                    form.append('postMediaThumbnail.id', null);
+                    form.append('postMediaThumbnail.file', imageCover);
+                }
+                console.log('images', images)
+                for (let i = 0; i < postDTO.images.length; i++) {
+                    form.append(`postMediaImages[${i}].id`, null);
+                    form.append(`postMediaImages[${i}].file`, postDTO.images[i]);
+                }
+                for (let i = 0; i < postMediaOrl.length; i++) {
+                    form.append(`postMediaImages[${i + postDTO.images.length}].id`, postMediaOrl[i].id);
+                    form.append(`postMediaImages[${i}].file`, new File([null], null, {
+                        type: null,
+                    }));
+                }
+                doEditPost(form);
+
+            }
+        }
+    })
+
+    page.loadData = () => {
+        page.commands.getAllCategories();
+        page.commands.getAllUtilities();
+        page.commands.getAllGenders();
+    }
+
+    //img
+    var imageCover = new PostMedia();
+    var postMediaOrl = [];
+    var images = [];
+    var imageAdds = [];
+    imageCover = post.thumbnailUrl;
+    postMediaOrl = post.imageUrls;
+
+    function image_select_cover(el) {
+        imageCover = $(el).prop('files')[0];
+    }
+
+    function image_select(el) {
+        // let form =new FormData();
+        // let imageAdd = $(el).prop('files')[0];
+        // form.append('images',imageAdd);
+        // form.append('images',imageAdd);
+        // console.log(imageAdd);
+        // doCreatePost(form);
+        let image = document.getElementById('image').files;
+        for (i = 0; i < image.length; i++) {
+            if (check_duplicate(image[i].name)) {
+                images.push({
+                    "name": image[i].name,
+                    "url": URL.createObjectURL(image[i]),
+                    "file": image[i],
+                })
+                let imageAdd = $(el).prop('files')[i];
+                imageAdds.push(imageAdd);
+            } else {
+                alert(image[i].name + " ảnh này đã được chọn");
+            }
+        }
+        document.getElementById('form').reset();
+        document.getElementById('container').innerHTML = image_show();
+    }
+
+    function image_show() {
+        var image = "";
+        postMediaOrl.forEach((i, index) => {
+            image += `<div class="image_container d-flex justify-content-center position-relative">
+   	  	  	  	  <img class="list-img" src="${i.fileUrl}" alt="Image">
+   	  	  	  	  <span  onclick="delete_image_Orl(` + postMediaOrl.indexOf(i) + `)">&times;</span>
+   	  	  	  </div>`;
+        })
+        images.forEach((i, index) => {
+            image += `<div class="image_container d-flex justify-content-center position-relative">
+   	  	  	  	  <img class="list-img" src="` + i.url + `" alt="Image">
+   	  	  	  	  <span  onclick="delete_image(` + images.indexOf(i) + `)">&times;</span>
+   	  	  	  </div>`;
+        })
+        return image;
+    }
+
+
+    function delete_image(e) {
+
+        images.splice(e, 1);
+        imageAdds.splice(e, 1);
+        document.getElementById('container').innerHTML = image_show();
+    }
+
+    function delete_image_Orl(e) {
+        postMediaOrl.splice(e, 1);
+
+        // post.imageUrls.splice(e,1);
+
+        document.getElementById('container').innerHTML = image_show();
+    }
+
+    function check_duplicate(name) {
+        var image = true;
+        if (images.length > 0) {
+            for (e = 0; e < images.length; e++) {
+                if (images[e].name == name) {
+                    image = false;
+                    break;
+                }
+            }
+        }
+        return image;
+    }
+
+    function get_image_data() {
+        var form = new FormData()
+        let fileReader = new FileReader();
+        for (let index = 0; index < images.length; index++) {
+            form.append('images', images[index]['file']);
+            // fileReader.readAsDataURL(images[index]);
+            // form.append("file[" + index + "]", images[index]['file']);
+        }
+
+        return form;
+    }
+
+
+    $(function () {
+        page.loadData();
+        $("#capacityUp").val(rentHouse.capacity);
+        $("#areaUp").val(rentHouse.area);
+        $("#priceUp").val(rentHouse.price);
+
+        $("#locationDetailUp").val(locationRegion.locationDetail);
+
+        $("#titleUp").val(post.title);
+        $("#descriptionUp").val(post.descriptionContent);
+        $("#img-preview").attr("src", imageCover.fileUrl);
+
+        page.commands.getAllProvince().then(function () {
+            $("#provinceUp").val(locationRegion.provinceId);
+        })
+        page.commands.getAllDistrict(locationRegion.provinceId).then(function () {
+            $("#districtUp").val(locationRegion.districtId);
+
+        });
+        page.commands.getAllWard(locationRegion.districtId).then(function () {
+            $("#wardUp").val(locationRegion.wardId);
+        });
+        document.getElementById('container').innerHTML = image_show();
+    })
+
+</script>
+</body>
+
+</html>
