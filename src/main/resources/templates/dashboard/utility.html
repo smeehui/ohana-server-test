@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+
+    <!-- Title -->
+    <title>Users | Front - Admin &amp; Dashboard Template</title>
+    <th:block th:include="dashboard/layout/head :: head"/>
+
+    <!--    <link rel="stylesheet" href="\resources\bootstrap-5.0.2\css\bootstrap.min.css">-->
+    <link rel="stylesheet" href="\resources\ohana\css\style1.css">
+</head>
+
+<body class="footer-offset">
+
+<!-- ONLY DEV -->
+
+<!-- Builder -->
+<th:block th:include="dashboard/layout/builder :: builder"/>
+<!-- End Builder Toggle -->
+
+<!-- JS Preview mode only -->
+<th:block th:include="dashboard/layout/header :: header"/>
+
+<!--SideBar-->
+<th:block th:include="dashboard/layout/sideBar :: sideBar"/>
+<!--End SideBar-->
+
+<!--  Sidebar Compact-->
+<th:block th:include="dashboard/layout/sidebarCompact :: sidebarCompact"/>
+<!--  End Sidebar Compact-->
+
+<!-- END ONLY DEV -->
+
+<!-- Search Form -->
+<div id="searchDropdown" class="hs-unfold-content dropdown-unfold search-fullwidth d-md-none">
+    <form class="input-group input-group-merge input-group-borderless">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <i class="tio-search"></i>
+            </div>
+        </div>
+
+        <input class="form-control rounded-0" type="search" placeholder="Search in front"
+               aria-label="Search in front">
+
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <div class="hs-unfold">
+                    <a class="js-hs-unfold-invoker" href="javascript:;" data-hs-unfold-options='{
+                   "target": "#searchDropdown",
+                   "type": "css-animation",
+                   "animationIn": "fadeIn",
+                   "hasOverlay": "rgba(46, 52, 81, 0.1)",
+                   "closeBreakpoint": "md"
+                 }'>
+                        <i class="tio-clear tio-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- End Search Form -->
+
+<!-- ========== HEADER ========== -->
+
+<!-- ========== END HEADER ========== -->
+
+<!-- ========== MAIN CONTENT ========== -->
+<!-- Navbar Vertical -->
+
+<!-- End Navbar Vertical -->
+
+
+<main id="content" role="main" class="main">
+    <!-- Content -->
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-end">
+                <div class="col-sm mb-2 mb-sm-0">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-no-gutter">
+                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a class="breadcrumb-link" href="javascript:;">Tiện ích</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Danh sách tiện ích</li>
+                        </ol>
+                    </nav>
+
+                    <h1 class="page-header-title">DANH SÁCH TIỆN ÍCH</h1>
+                </div>
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- End Page Header -->
+
+    </div>
+    <!-- End Content -->
+
+    <!-- Footer -->
+
+    <th:block th:include="dashboard/layout/footer :: footer"/>
+
+    <!-- End Footer -->
+</main>
+<!-- ========== END MAIN CONTENT ========== -->
+
+<!-- ========== SECONDARY CONTENTS ========== -->
+<th:block th:include="dashboard/layout/secondaryContent :: secondaryContent"/>
+<!-- ========== END SECONDARY CONTENTS ========== -->
+
+<th:block th:include="dashboard/layout/script :: script"/>
+
+<script>
+    let user = new User();
+    let utility = new Utility();
+    let page = {
+        url: {
+            getAllUtilities: App.BASE_URL_POST + "/utility",
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        initializeControlEvent: {}
+    }
+
+    $("#btnEdit").on("click", function () {
+        doEdit();
+    });
+
+    page.commands.getAllUtilities = () => {
+        $.ajax({
+            type: "GET",
+            url: page.url.getAllUtilities,
+        }).done(function (data) {
+            // drawCustomer(data);
+            $("#tbPost tbody").html('');
+            data.forEach(item => {
+                let str = `
+                    <tr id="tr_${item.id}">
+                        <td>
+                            <div class="col-md-3">
+                                 <label class="_22Yl9" id="${item.id}">
+                                     <span class="${item.icon}">
+                                        ${item.name}
+                                     </span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-warning edit"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    data-id="${item.id}">
+                                <i class="fa fa-edit">Sửa</i>
+                            </button>
+                            </td>
+                            <td>
+                            <button type="button" class="btn btn-outline-secondary hide"
+                                    data-id="${item.id}">
+                                <i class="fa fa-edit">Ẩn</i>
+                            </button>
+                            </td>
+                            <td>
+                          <!--  <button type="button" class="btn btn-outline-danger delete"
+                                    data-id="${item.id}">
+                                <i class="fa fa-ban">Xoá</i>
+                            </button> -->
+                        </td>
+                    </tr>
+                    `;
+
+                $("#tbPost").prepend(str);
+            });
+            handlerShowModalEdit();
+            handlerShowConfirmDelete();
+            handlerShowConfirmHide();
+        }).fail(function () {
+            showError('Error')
+        })
+    }
+
+    function handlerShowModalEdit() {
+        $("button.edit").on("click", function () {
+            $("#modalUpdateUtility").modal("show");
+
+            let utilityId = $(this).data("id");
+
+            $.ajax({
+                type: "GET",
+                url: "/api/post/" + utilityId
+            })
+                .done(function (data) {
+                    // bakeryForm = data;
+                    $("#idUp").val(data.id);
+                    $("#nameUp").val(data.name);
+
+                    $("#modalUpdateUtility").modal("show");
+                })
+                .fail(function (resp) {
+                    // alert("Show modal update bakery error");
+                    doEdit();
+                })
+        });
+    }
+
+    function doEdit() {
+        utility.id = $("#idUp").val();
+        utility.name = $("#nameUp").val();
+
+        $.ajax({
+            headers: {
+                "Accept": "application/json",
+                "Content-type": "application/json"
+            },
+            type: "PUT",
+            url: "/api/post/utility",
+            data: JSON.stringify(utility)
+        })
+            .done(function (data) {
+                $("#modalUpdateUtility").modal("hide");
+                let str = `
+                    <tr id="tr_${data.id}">
+                        <td>
+                            <div class="col-md-3">
+                                 <label class="_22Yl9" id="${data.id}">
+                                     <span class="${data.icon}">
+                                        ${data.name}
+                                     </span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-warning edit"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    data-id="${data.id}">
+                                <i class="fa fa-edit">Sửa</i>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-secondary hide"
+                                    data-id="${data.id}">
+                                <i class="fa fa-edit">Ẩn</i>
+                            </button>
+                        </td>
+                        <td>
+                         <!--   <button type="button" class="btn btn-outline-danger delete"
+                                    data-id="${data.id}">
+                                <i class="fa fa-ban">Xoá</i>
+                            </button> -->
+                        </td>
+                    </tr>
+                `;
+
+                let currentRow = $("#tr_" + data.id);
+                currentRow.replaceWith(str);
+                showSuccess('Update icon Success!');
+                handlerShowModalEdit();
+                handlerShowConfirmDelete();
+                handlerShowConfirmHide();
+            })
+            .fail(function () {
+                alert("error Update")
+            })
+
+    }
+
+    function handlerShowConfirmHide() {
+        $("button.hide").on('click', function () {
+            let utilityId = $(this).data("id");
+
+            Swal.fire({
+                title: 'Bạn có muốn ẩn icon này không?',
+                text: "Đây là hành động ẩn tạm thời, nó có thể khôi phục!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Xoá',
+                cancelButtonText: 'Huỷ'
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    doHide(utilityId);
+                }
+            })
+        })
+
+    }
+
+    function doHide(utilityId) {
+        $.ajax({
+            type: "POST",
+            url: "/api/post/hidden/" + utilityId
+
+        }).done(function () {
+            $("#tr_" + utilityId).remove();
+
+            showSuccess('Update icon Success!');
+            handlerShowModalEdit();
+            handlerShowConfirmDelete();
+            handlerShowConfirmHide();
+            Swal.fire(
+                'Ẩn',
+                'Ẩn icon thành công.',
+                'success'
+            )
+
+        }).fail(function () {
+            Swal.fire({
+                position: 'mid-center',
+                title: 'Rất tiếc bạn không thể ẩn icon này. Vui lòng kiểm tra lại',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2000
+            })
+
+        })
+    }
+
+    function handlerShowConfirmDelete() {
+        $("button.delete").on('click', function () {
+            let utilityId = $(this).data("id");
+            Swal.fire({
+                title: 'Bạn có chắc chắn muốn xoá icon này không?',
+                text: "Khi bạn xoá icon này sẽ mất vĩnh viễn!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Xoá',
+                cancelButtonText: 'Huỷ'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    doDelete(utilityId);
+                }
+            })
+        })
+
+    }
+
+    function doDelete(utilityId) {
+        $.ajax({
+            type: "DELETE",
+            url: "/api/post/delete",
+        }).done(function () {
+            $("#tr_" + utilityId.id).remove();
+            // getAllCustomer();
+            Swal.fire(
+                'xoá!',
+                'xoá icon thành công.',
+                'success'
+            )
+            // showSuccess("hf")
+        }).fail(function () {
+            Swal.fire({
+                position: 'mid-center',
+                title: 'Rất tiếc bạn không thể xoá icon này',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+        })
+    }
+
+    page.commands.getAllUtilities();
+
+</script>
+
+<!-- JS Plugins Init. -->
+<script>
+    $(document).on('ready', function () {
+        // ONLY DEV
+        // =======================================================
+
+        if (window.localStorage.getItem('hs-builder-popover') === null) {
+            $('#builderPopover').popover('show')
+                .on('shown.bs.popover', function () {
+                    $('.popover').last().addClass('popover-dark')
+                });
+
+            $(document).on('click', '#closeBuilderPopover', function () {
+                window.localStorage.setItem('hs-builder-popover', true);
+                $('#builderPopover').popover('dispose');
+            });
+        } else {
+            $('#builderPopover').on('show.bs.popover', function () {
+                return false
+            });
+        }
+
+        // END ONLY DEV
+        // =======================================================
+
+
+        // BUILDER TOGGLE INVOKER
+        // =======================================================
+        $('.js-navbar-vertical-aside-toggle-invoker').click(function () {
+            $('.js-navbar-vertical-aside-toggle-invoker i').tooltip('hide');
+        });
+
+
+        // INITIALIZATION OF MEGA MENU
+        // =======================================================
+        var megaMenu = new HSMegaMenu($('.js-mega-menu'), {
+            desktop: {
+                position: 'left'
+            }
+        }).init();
+
+
+        // INITIALIZATION OF NAVBAR VERTICAL NAVIGATION
+        // =======================================================
+        var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
+
+
+        // INITIALIZATION OF TOOLTIP IN NAVBAR VERTICAL MENU
+        // =======================================================
+        $('.js-nav-tooltip-link').tooltip({boundary: 'window'})
+
+        $(".js-nav-tooltip-link").on("show.bs.tooltip", function (e) {
+            if (!$("body").hasClass("navbar-vertical-aside-mini-mode")) {
+                return false;
+            }
+        });
+
+
+        // INITIALIZATION OF UNFOLD
+        // =======================================================
+        $('.js-hs-unfold-invoker').each(function () {
+            var unfold = new HSUnfold($(this)).init();
+        });
+
+
+        // INITIALIZATION OF FORM SEARCH
+        // =======================================================
+        $('.js-form-search').each(function () {
+            new HSFormSearch($(this)).init()
+        });
+
+
+        // INITIALIZATION OF SHOW PASSWORD
+        // =======================================================
+        $('.js-toggle-password').each(function () {
+            new HSTogglePassword(this).init()
+        });
+
+
+        // INITIALIZATION OF FILE ATTACH
+        // =======================================================
+        $('.js-file-attach').each(function () {
+            var customFile = new HSFileAttach($(this)).init();
+        });
+
+
+        // INITIALIZATION OF TABS
+        // =======================================================
+        $('.js-tabs-to-dropdown').each(function () {
+            var transformTabsToBtn = new HSTransformTabsToBtn($(this)).init();
+        });
+
+
+        // INITIALIZATION OF STEP FORM
+        // =======================================================
+        $('.js-step-form').each(function () {
+            var stepForm = new HSStepForm($(this), {
+                finish: function () {
+                    $("#addUserStepFormProgress").hide();
+                    $("#addUserStepFormContent").hide();
+                    $("#successMessageContent").show();
+                }
+            }).init();
+        });
+
+
+        // INITIALIZATION OF MASKED INPUT
+        // =======================================================
+        $('.js-masked-input').each(function () {
+            var mask = $.HSCore.components.HSMask.init($(this));
+        });
+
+
+        // INITIALIZATION OF SELECT2
+        // =======================================================
+        $('.js-select2-custom').each(function () {
+            var select2 = $.HSCore.components.HSSelect2.init($(this));
+        });
+
+
+        // INITIALIZATION OF COUNTERS
+        // =======================================================
+        $('.js-counter').each(function () {
+            var counter = new HSCounter($(this)).init();
+        });
+
+
+        // INITIALIZATION OF DATATABLES
+        // =======================================================
+        var datatable = $.HSCore.components.HSDatatables.init($('#datatable'), {
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'copy',
+                    className: 'd-none'
+                },
+                {
+                    extend: 'excel',
+                    className: 'd-none'
+                },
+                {
+                    extend: 'csv',
+                    className: 'd-none'
+                },
+                {
+                    extend: 'pdf',
+                    className: 'd-none'
+                },
+                {
+                    extend: 'print',
+                    className: 'd-none'
+                },
+            ],
+            select: {
+                style: 'multi',
+                selector: 'td:first-child input[type="checkbox"]',
+                classMap: {
+                    checkAll: '#datatableCheckAll',
+                    counter: '#datatableCounter',
+                    counterInfo: '#datatableCounterInfo'
+                }
+            },
+            language: {
+                zeroRecords: '<div class="text-center p-4">' +
+                    '<img class="mb-3" src="./assets/svg/illustrations/sorry.svg" alt="Image Description" style="width: 7rem;">' +
+                    '<p class="mb-0">No data to show</p>' +
+                    '</div>'
+            }
+        });
+
+        $('#export-copy').click(function () {
+            datatable.button('.buttons-copy').trigger()
+        });
+
+        $('#export-excel').click(function () {
+            datatable.button('.buttons-excel').trigger()
+        });
+
+        $('#export-csv').click(function () {
+            datatable.button('.buttons-csv').trigger()
+        });
+
+        $('#export-pdf').click(function () {
+            datatable.button('.buttons-pdf').trigger()
+        });
+
+        $('#export-print').click(function () {
+            datatable.button('.buttons-print').trigger()
+        });
+
+        $('.js-datatable-filter').on('change', function () {
+            var $this = $(this),
+                elVal = $this.val(),
+                targetColumnIndex = $this.data('target-column-index');
+
+            datatable.column(targetColumnIndex).search(elVal).draw();
+        });
+
+        $('#datatableSearch').on('mouseup', function (e) {
+            var $input = $(this),
+                oldValue = $input.val();
+
+            if (oldValue == "") return;
+
+            setTimeout(function () {
+                var newValue = $input.val();
+
+                if (newValue == "") {
+                    // Gotcha
+                    datatable.search('').draw();
+                }
+            }, 1);
+        });
+
+
+        // INITIALIZATION OF QUICK VIEW POPOVER
+        // =======================================================
+        $('#editUserPopover').popover('show');
+
+        $(document).on('click', '#closeEditUserPopover', function () {
+            $('#editUserPopover').popover('dispose');
+        });
+
+        $('#editUserModal').on('show.bs.modal', function () {
+            $('#editUserPopover').popover('dispose');
+        });
+
+
+        // DARK POPOVER
+        // =======================================================
+        $('[data-toggle="popover-dark"]').on('shown.bs.popover', function () {
+            $('.popover').last().addClass('popover-dark')
+        })
+    });
+</script>
+
+<!-- IE Support -->
+<script>
+    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="./assets/vendor/babel-polyfill/polyfill.min.js"><\/script>');
+</script>
+</body>
+
+</html>

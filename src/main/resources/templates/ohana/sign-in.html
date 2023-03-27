@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)/ -->
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+
+    <th:block th:replace="/ohana/layout/head :: head('Ohana - Tìm ở ghép, phòng trọ siêu nhanh')"/>
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="/resources/ohana/sign-in/"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/bootstrap-5.0.2/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/fontawesome5.15.4/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="/resources/ohana/sign-in/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/css/style-show-password.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1057.0" data-gr-ext-installed="" cz-shortcut-listen="true">
+<div id="root">
+    <div class="app">
+        <div class="_3bjUj">
+            <!--header-->
+            <th:block th:replace="/ohana/layout/header :: header(${userLogin})"/>
+
+
+            <div class="_1El-8">
+
+                <div class="container-login100">
+                    <!-- <img src="/avatar-tag-black.png"> -->
+                    <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
+
+                        <form class="login100-form validate-form-sign-in" th:action="@{/sign-in}" method="post"
+                              th:object="${user}">
+                            <div class="login100-form-title p-b-37 div-sign-in">
+                                        <span>
+                                            Đăng nhập
+                                        </span>
+                            </div>
+                            <label style="size: 10px" id="message">
+
+                            </label>
+                            <div class="wrap-input100 validate-input m-b-20"
+                                 data-validate="Nhập số điện thoại hoặc email">
+                                <input class="input100" type="text" id="phoneOrEmail" name="phoneOrEmail"
+                                       placeholder="Nhập SĐT hoặc email" th:field="*{phoneOrEmail}">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input m-b-25" data-validate="Nhập mật khẩu">
+                                <span class="btn-show-pass">
+							        <i class="zmdi zmdi-eye"></i>
+						        </span>
+                                <input class="input100" type="password" id="pass" name="pass"
+                                       placeholder="Nhập mật khẩu" th:field="*{password}">
+                                <span class="focus-input100"></span>
+                            </div>
+                            <div class="container-login100-form-btn">
+                                <button type="button" id="btnLogin" class="login100-form-btn">
+                                    Đăng nhập
+                                </button>
+                            </div>
+
+                            <div class="text-center p-t-57 p-b-20">
+                                        <span class="txt1">
+                                           Hoặc đăng nhập với
+                                        </span>
+                            </div>
+
+                            <div class="flex-c p-b-50">
+                                <a href="#" class="login100-social-item">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+
+                                <!--                                <a href="#" class="login100-social-item">-->
+                                <!--                                    <img src="/resources/ohana/sign-in/images/icons/icon-google.png" alt="GOOGLE">-->
+                                <!--                                </a>-->
+
+                            </div>
+                            <div class="flex-c p-b-50">
+                                <div id="g_id_onload"
+                                     data-client_id="809100511304-qcmbmqj4m2njft9vs8deo2791s6miodm.apps.googleusercontent.com"
+                                     data-login_uri="http://localhost:8080/sign-in"
+                                     data-auto_prompt="false">
+                                </div>
+                                <div class="g_id_signin"
+                                     data-type="standard"
+                                     data-size="large"
+                                     data-theme="outline"
+                                     data-text="sign_in_with"
+                                     data-shape="rectangular"
+                                     data-logo_alignment="left">
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a href="/sign-up" class="txt2 hov1">
+                                    Đăng ký
+                                </a>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!--footer-->
+            <th:block th:replace="/ohana/layout/footer :: footer"/>
+            <!--            <th:block th:replace="/ohana/layout/script :: script"/>-->
+        </div>
+    </div>
+</div>
+<!-- <script type="text/javascript"
+src="/runtime.0a67c7ac13035fb53d78.js.download"></script>
+<script type="text/javascript"
+src="/vendors.0a67c7ac13035fb53d78.js.download"></script>
+<script type="text/javascript"
+src="/main.0a67c7ac13035fb53d78.js.download"></script> -->
+
+<!--===============================================================================================-->
+<script src="/resources/ohana/sign-in/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="/resources/ohana/sign-in/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="/resources/ohana/sign-in/vendor/bootstrap/js/popper.js"></script>
+<script src="/resources/ohana/sign-in/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="/resources/ohana/sign-in/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="/resources/ohana/sign-in/vendor/daterangepicker/moment.min.js"></script>
+<script src="/resources/ohana/sign-in/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="/resources/ohana/sign-in/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="/resources/ohana/sign-in/js/main.js"></script>
+<script src="/resources/js/sweetalert2@11.js"></script>
+<script src="/resources/ohana/js/app.js"></script>
+
+<script>
+
+    // $('.validate-form-sign-in').on('submit', function () {
+    //     if (!$('#termsCheckbox').is(':checked')) {
+    //         return false;
+    //     }
+    // });
+
+    $("#btnLogin").on("click", () => {
+        let data = {
+            phoneOrEmail: $("#phoneOrEmail").val(),
+            password: $("#pass").val()
+        }
+
+        $.ajax({
+            type: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            url: "/api/login/sign-in",
+            data: JSON.stringify(data)
+        }).done((resp) => {
+            showSuccess(resp);
+            location.href = App.DOMAIN
+        }).fail((error) => {
+            $("#message").html("");
+            let str = `<label id="title-error" class="error" for="title">Tài khoản hoặc mật khẩu sai</label>`;
+            $("#message").append(str);
+        })
+    });
+
+    var showPass = 0;
+    $('.btn-show-pass').on('click', function () {
+        if (showPass == 0) {
+            $(this).next('input').attr('type', 'text');
+            $(this).find('i').removeClass('zmdi-eye');
+            $(this).find('i').addClass('zmdi-eye-off');
+            showPass = 1;
+        } else {
+            $(this).next('input').attr('type', 'password');
+            $(this).find('i').addClass('zmdi-eye');
+            $(this).find('i').removeClass('zmdi-eye-off');
+            showPass = 0;
+        }
+
+    });
+
+</script>
+
+
+</body>
+
+
+</html>

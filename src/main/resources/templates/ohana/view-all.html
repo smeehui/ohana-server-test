@@ -1,0 +1,742 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="vi">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <th:block th:replace="/ohana/layout/head :: head('Ohana - Tìm ở ghép, phòng trọ siêu nhanh')"/>
+    <link href="/resources/paginationjs-master/paginationjs-master/dist/pagination.css" rel="stylesheet"
+          type="text/css">
+    <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"-->
+    <!--            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"-->
+    <!--            crossorigin="anonymous"></script>-->
+    <!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"-->
+    <!--          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">-->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"-->
+    <!--            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"-->
+    <!--            crossorigin="anonymous"></script>-->
+    <style>
+        ul {
+            list-style-type: none;
+        !important;
+        }
+    </style>
+</head>
+
+<body>
+<div id="root">
+    <div class="app">
+        <div class="_3bjUj">
+            <!--header-->
+            <th:block th:replace="/ohana/layout/header :: header(${userLogin})"/>
+            <div class="QZg_h _18fKS">
+                <div class="_3oMi4">
+                    <div class="_3OgY1"><a href="/"><img
+                            src="/resources/ohana/img/8cc95480cbd2708db10ad4b8de56306a.svg"></a>
+                        <div class="_1_U71">
+                            <div class="_2lKdR">
+                                <div class="_3p4ES _1vH0j" id="floating-city-dropdown">
+                                    <div class="wj6oE"><span class="icon-location-fill"
+                                                             style="color: rgb(247, 52, 134); font-size: 16px;"></span><span
+                                            class="_1qNTb">HUẾ</span>
+                                    </div>
+                                </div>
+                                <div class="_1pVEQ"><input id="search" class="bX6zE"
+                                                           placeholder="Tìm kiếm theo địa điểm, quận, tên đường..."
+                                                           value="">
+                                    <div class="_2QckJ"><span class="icon-search"
+                                                              style="color: rgb(247, 52, 134); font-size: 24px;"></span>
+                                    </div>
+                                </div>
+                                <div class="_1IdUV">
+                                    <ul class="b-CdA _11SSO" style="left: 157px;" id="location">
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="_1IdUV">
+                                <ul class="b-CdA" style="width: 123px;">
+                                    <li class="J_X1w _1vH0j" value="HCM">Huế</li>
+                                    <!--                                    <li class="J_X1w _1vH0j GpngF" value="HN">Hà Nội</li>-->
+                                </ul>
+                                <ul class="b-CdA" style="left: 128px;"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="_2fxFG">
+            <div class="FMSe2 _3Nvxb">
+                <div class="_1say4">
+                    <div class="_1Tf_Z _3x9MP"><span class="_2TvH9">Bộ lọc</span>
+                        <div class="_1vH0j">
+                            <div class="_1Gwyz _1vH0j btn-search"><span>Áp dụng</span></div>
+                        </div>
+                    </div>
+                    <div class="ySUHy">
+                        <div class="q49VD">
+                            <div class="wzw4X"><span class="_2dNxP">Giá</span><span
+                                    class="icon-a-down _11wO8 _2enHb" id="btnPrice"
+                                    style="color: rgb(51, 51, 51); font-size: 20px;"></span></div>
+                            <div class="_1ZENx _1-FEc _39FVJ" id="price">
+
+                                <div class="oH889">
+                                    <div class="range-slide">
+                                        <div class="slide">
+                                            <div class="line" id="line" style="left: 0%; right: 0%;"></div>
+                                            <span class="thumb" id="thumbMin" style="left: 0%;"></span>
+                                            <span class="thumb" id="thumbMax" style="left: 100%;"></span>
+                                        </div>
+                                        <input class="input-class" id="rangeMin" type="range" max="15000000" min="0"
+                                               step="500000"
+                                               value="0">
+                                        <input class="input-class" id="rangeMax" type="range" max="15000000" min="0"
+                                               step="500000"
+                                               value="15000000">
+                                    </div>
+                                    <div class="display">
+                                        <span id="min">0tr</span>
+                                        <span id="max">15tr+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="q49VD">
+                            <div class="wzw4X"><span class="_2dNxP">Tiện ích</span><span
+                                    class="icon-a-down _11wO8 _2enHb" id="btnUtility"
+                                    style="color: rgb(51, 51, 51); font-size: 20px;"></span></div>
+                            <div class="_1ZENx _1-FEc _1Zx6Q" id="utilities">
+
+                            </div>
+                        </div>
+                        <div class="q49VD">
+                            <div class="wzw4X"><span class="_2dNxP">Loại phòng</span><span
+                                    class="icon-a-down _11wO8 _2enHb" id="btnCategory"
+                                    style="color: rgb(51, 51, 51); font-size: 20px;"></span></div>
+                            <div class="_1ZENx _1-FEc _1Ed3U" id="categories">
+                            </div>
+                        </div>
+                        <div class="q49VD">
+                            <div class="wzw4X"><span class="_2dNxP">Giới tính</span><span
+                                    class="icon-a-down _11wO8 _2enHb" id="btnGender"
+                                    style="color: rgb(51, 51, 51); font-size: 20px;"></span></div>
+                            <div class="_1ZENx _1-FEc X0uZX" id="genders">
+                                <!--                                <label class="zOnI7" id="all"><span class="_1HWTz">Tất-->
+                                <!--                                            cả</span><input type="radio" name="roomGendersRadio"><span-->
+                                <!--                                    class="_30lzl"></span></label>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="_1vH0j _3X6_U btn-search"><span>Áp dụng</span></div>
+                </div>
+            </div>
+            <div class="aR5Eq">
+                <div class="TJKfZ _3Nvxb">
+                    <th:block th:if="${trend}!=null">
+                        <div>
+                                            <span style="color: rgb(102, 102, 102);"><a href="/view-all"
+                                                                                        style="color: rgb(72, 119, 248);">Huế</a>
+                                                 <span class="icon-a-right"
+                                                       style="color: rgb(102, 102, 102); font-size: 14px; margin-left: 10px; margin-right: 10px;">
+                                                </span>
+                                                <span style="color: rgb(102, 102, 102);">Thành phố Huế</span>
+                                                <span class="icon-a-right"
+                                                      style="color: rgb(102, 102, 102); font-size: 14px; margin-left: 10px; margin-right: 10px;">
+                                                </span>
+                                            </span>
+                            <span style="color: rgb(102, 102, 102);" th:text="${trend.name}"></span>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${provinceName}!=null">
+                        <div>
+                                            <span style="color: rgb(102, 102, 102);"><a href="/view-all"
+                                                                                        style="color: rgb(72, 119, 248);">Huế</a>
+                                                <!--                                                 <span class="icon-a-right"-->
+                                                <!--                                                       style="color: rgb(102, 102, 102); font-size: 14px; margin-left: 10px; margin-right: 10px;">-->
+                                                <!--                                                </span>-->
+                                                <!--                                                <span style="color: rgb(102, 102, 102);">Thành phố Huế</span>-->
+                                                <span class="icon-a-right"
+                                                      style="color: rgb(102, 102, 102); font-size: 14px; margin-left: 10px; margin-right: 10px;">
+                                                </span>
+                                            </span>
+                            <span style="color: rgb(102, 102, 102);" th:text="${locationName}"></span>
+                        </div>
+                    </th:block>
+                    <div class="_1Tf_Z"><span class="_3gUBz"><span class="_2TvH9">Phòng mới nhất</span></span></div>
+                    <!--                    <div class="_1WjTi" id="postFilters">-->
+                    <div class="_1WjTi" id="pagination-demo1">
+                        <!--                        <th:block th:each="item : ${posts}">-->
+                        <!--                            <div class="nctjX"><a target="_blank" th:href="@{/room/__${item.id}__}">-->
+                        <!--                                <div class="X8svI _2DJkz">-->
+                        <!--                                    <div class="pcGxo">-->
+                        <!--                                        <div class="_1Gm0b"><img-->
+                        <!--                                                src="/resources/ohana/img/20c8373d39e30d04cde885686abc2987.png"-->
+                        <!--                                                alt="verified-img" class="_1TPDO"></div>-->
+                        <!--                                        <img th:src="${item.thumbnailUrl.fileUrl}"-->
+                        <!--                                             alt="room-img"-->
+                        <!--                                             class="_1IOeB">-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="_228LH">-->
+                        <!--                                        <p class="_3xXyQ" th:text="${item.title}"></p>-->
+                        <!--                                        <div class="_27rcQ">-->
+                        <!--                                            <div class="_3piN7">-->
+                        <!--                                                <div class="wpwoK"><span class="icon-nav-home"-->
+                        <!--                                                                         style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span-->
+                        <!--                                                        th:text="${item.category.name}"></span></div>-->
+                        <!--                                                <div class="_3TYbx"><span><span class="icon-nav-roomate"-->
+                        <!--                                                                                style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"-->
+                        <!--                                                                                th:text="${item.rentHouse.gender.name}"></span></span><span><span-->
+                        <!--                                                        class="icon-squaremeter"-->
+                        <!--                                                        style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"-->
+                        <!--                                                        th:text="${item.rentHouse.area}"></span>m<sup>2</sup></span>-->
+                        <!--                                                </div>-->
+                        <!--                                                <div class="_1jHdY"><span class="icon-location"-->
+                        <!--                                                                          style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span-->
+                        <!--                                                        class="uKi2L"-->
+                        <!--                                                        th:text="${item.location.locationDetail} + ', ' + ${item.location.wardName} + ', ' + ${item.location.districtName} + ', ' + ${item.location.provinceName}"></span>-->
+                        <!--                                                </div>-->
+                        <!--                                            </div>-->
+                        <!--                                            <div class="_1ezn1"><span class="_36r7N"-->
+                        <!--                                                                      th:text="${item.rentHouse.price}/1000000"></span><span-->
+                        <!--                                                    class="_11LqE">tr/phòng</span></div>-->
+                        <!--                                        </div>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                            </a></div>-->
+                        <!--                        </th:block>-->
+
+                        <div class="_1RkT-">
+                            <section>
+                                <div class="data-container"></div>
+                            </section>
+                            <!--                            <div id="pagination-demo1"></div>-->
+                            <!--                            <div class="_3l_fA"><span class="_2Cf4k _2jTB6">first</span><span-->
+                            <!--                                    class="_18QWa _2jTB6">prev</span><span class="_2jTB6 _2oguF">1</span><span-->
+                            <!--                                    class="_2jTB6">2</span><span class="_2jTB6">3</span><span-->
+                            <!--                                    class="_2jTB6">4</span><span class="_2jTB6">5</span><span-->
+                            <!--                                    class="_2jTB6 _3kWYf">next</span><span class="_2jTB6 _2zswP">last</span></div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--footer-->
+        <th:block th:replace="/ohana/layout/footer :: footer"/>
+        <th:block th:replace="/ohana/layout/script :: script"/>
+    </div>
+</div>
+<script src="/resources/paginationjs-master/paginationjs-master/src/pagination.js"></script>
+<script th:inline="javascript">
+    let page = {
+        url: {
+            getAllCategories: App.BASE_URL_API + "/categories",
+            getAllUtilities: App.BASE_URL_API + "/utilities",
+            getAllGenders: App.BASE_URL_API + "/genders",
+            getAllProvinces: App.BASE_URL_PROVINCE,
+            doCreatePost: App.BASE_URL_API + "/posts/postNews",
+            doFilter: App.BASE_URL_API + "/posts/filter",
+
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        initializeControlEvent: {}
+
+    }
+    let post = new Post();
+    let filter = new Filter();
+    let listPost = [];
+    let min = 0;
+    let max = 15000000;
+
+    const calcLeftPosition = value => 100 / (15000000) * (value);
+
+    $('#rangeMin').on('input', function (e) {
+        const newValue = parseInt(e.target.value);
+        if (newValue + 500000 > max) return;
+        min = newValue;
+        $('#thumbMin').css('left', calcLeftPosition(newValue) + '%');
+        $('#min').html(newValue / 1000000 + 'tr');
+        $('#line').css({
+            'left': calcLeftPosition(newValue) + '%',
+            'right': (100 - calcLeftPosition(max)) + '%'
+        });
+    });
+
+    $('#rangeMax').on('input', function (e) {
+        const newValue = parseInt(e.target.value);
+        if (newValue - 500000 < min) return;
+        max = newValue;
+        $('#thumbMax').css('left', calcLeftPosition(newValue) + '%');
+        $('#max').html(newValue / 1000000 + 'tr');
+        $('#line').css({
+            'left': calcLeftPosition(min) + '%',
+            'right': (100 - calcLeftPosition(newValue)) + '%'
+        });
+    });
+    var postList;
+
+    function doFilter(filter) {
+        $.ajax({
+            headers: {
+                "accept": "Application/json",
+                "content-type": "Application/json"
+            },
+            type: "POST",
+            url: page.url.doFilter,
+            data: filter
+        }).done(function (data) {
+            paging(data);
+
+            // console.log()
+            // console.log(thuanHoDien.totalElements);
+            // $("#postFilters").html("");
+            // data.forEach(item => {
+            // post = item;
+            // let typeRoom;
+            // switch (post.category.id) {
+            //     case 1:
+            //     case 2:
+            //         typeRoom = "tr/phòng"
+            //         break;
+            //     case 3:
+            //         typeRoom = "tr/người"
+            //         break;
+            //     case 4:
+            //     case 5:
+            //         typeRoom = "tr/căn"
+            //         break;
+            // }
+            //
+            // function checkPrice(price) {
+            //     if (price > 1000000) {
+            //         return price / 1000000;
+            //     } else {
+            //         return "<1";
+            //     }
+            // }
+            //
+            // let price = checkPrice(post.rentHouse.price);
+            //
+            // let str = `
+            //      <div class="nctjX"><a target="_blank" href="/room/${post.id}">
+            //             <div class="X8svI _2DJkz">
+            //                 <div class="pcGxo">
+            //                     <div class="_1Gm0b"><img
+            //                             src="/resources/ohana/img/20c8373d39e30d04cde885686abc2987.png"
+            //                             alt="verified-img" class="_1TPDO"></div>
+            //                     <img src="${post.thumbnailUrl.fileUrl}"
+            //                          alt="room-img"
+            //                          class="_1IOeB">
+            //                 </div>
+            //                 <div class="_228LH">
+            //                     <p class="_3xXyQ" >${post.title}</p>
+            //                     <div class="_27rcQ">
+            //                         <div class="_3piN7">
+            //                             <div class="wpwoK"><span class="icon-nav-home"
+            //                                                      style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+            //                                    >${post.category.name}</span></div>
+            //                             <div class="_3TYbx"><span><span class="icon-nav-roomate"
+            //                                                             style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"
+            //                                                            >${post.rentHouse.gender.name}</span></span><span><span
+            //                                     class="icon-squaremeter"
+            //                                     style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"
+            //                                    >${post.rentHouse.area}</span>m<sup>2</sup></span>
+            //                             </div>
+            //                             <div class="_1jHdY"><span class="icon-location"
+            //                                                       style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+            //                                     class="uKi2L"
+            //                                    >${post.location.locationDetail}, ${post.location.wardName}, ${post.location.districtName}, ${post.location.provinceName}</span>
+            //                             </div>
+            //                         </div>
+            //                         <div class="_1ezn1">
+            //                             <span class="_36r7N">${price}</span>
+            //                             <span class="_11LqE">${typeRoom}</span>
+            //                         </div>
+            //                     </div>
+            //                 </div>
+            //             </div>
+            //         </a></div>
+            //     `;
+            // $("#postFilters").append(str);
+            // });
+            // let str = `
+            //     <div class="_1RkT-">
+            //         <div class="_3l_fA">
+            //             <span class="_2Cf4k _2jTB6">first</span>
+            //             <span class="_18QWa _2jTB6">prev</span>
+            //             <span class="_2jTB6 _2oguF">1</span>
+            //             <span class="_2jTB6">2</span>
+            //             <span class="_2jTB6">3</span>
+            //             <span class="_2jTB6">4</span>
+            //             <span class="_2jTB6">5</span>
+            //             <span class="_2jTB6 _3kWYf">next</span>
+            //             <span class="_2jTB6 _2zswP">last</span>
+            //             </div>
+            //     </div>`
+            // $("#postFilters").append(str);
+        }).fail(function () {
+            showError("Get Filter Fail")
+        })
+    }
+
+    $("#btnPrice").on("click", function () {
+    })
+    // $(".paginationjs-page").on("click", function () {
+    //     $("#pagination-demo1").html("");
+    // })
+
+    $("#btnUtility").on('click', function () {
+        page.commands.getAllUtilities();
+    })
+
+    $("#btnCategory").on('click', function () {
+        page.commands.getAllCategories();
+    })
+
+    $("#btnGender").on('click', function () {
+        page.commands.getAllGenders();
+    })
+
+    $(".btn-search").on('click', function () {
+        filter.priceStarts = min;
+        filter.priceEnds = max;
+
+        let utilities = [];
+        $.each($("input[name='utilitiesCheckbox']:checked"), function () {
+            utilities.push(+$(this).val());
+        });
+        filter.utilities = utilities;
+        let categories = [];
+
+        $.each($("input[name='roomTypesCheckbox']:checked"), function () {
+            categories.push(+$(this).val());
+        });
+        filter.categories = categories;
+        filter.gender = +$('input[type="radio"][name="roomGendersRadio"]:checked').val();
+
+        doFilter(JSON.stringify(filter));
+    })
+
+
+    page.commands.getAllUtilities = () => {
+        $.ajax({
+            type: "GET",
+            url: page.url.getAllUtilities
+        }).done(function (data) {
+            $("#utilities").html('');
+            data.forEach((item) => {
+                $('#utilities').append(`
+                    <label class="_22Yl9" id="utility_${item.id}">
+                        <span class="_39t1S">
+                            <span class="${item.icon}" style="color: rgb(51, 51, 51); font-size: 20px;">
+                            </span>
+                            <span class="vcduZ">${item.name}</span>
+                            </span>
+                            <input value="${item.id}" type="checkbox" name="utilitiesCheckbox">
+                            <span class="_1akYM">
+                        </span>
+                    </label>
+                `);
+            });
+        }).fail(function () {
+            showError('Error')
+        })
+    }
+
+    page.commands.getAllCategories = () => {
+        $.ajax({
+            type: "GET",
+            url: page.url.getAllCategories
+        }).done(function (data) {
+            $("#categories").html('');
+            let strAll = `
+                <label class="_22Yl9" id="all">
+                    <span class="_1trBg">Tất cả</span>
+                    <input value="0" type="checkbox" name="roomTypesCheckbox">
+                    <span class="_1akYM"></span>
+                </label>
+            `;
+            $("#categories").append(strAll);
+
+            data.forEach(item => {
+                let str = `
+                    <label class="_22Yl9" id="all">
+                        <span class="_1trBg">${item.name}</span>
+                        <input value="${item.id}" type="checkbox" name="roomTypesCheckbox">
+                        <span class="_1akYM"></span>
+                    </label>
+                `;
+                $("#categories").append(str);
+            });
+
+        }).fail(function () {
+            showError('Error')
+        })
+    }
+
+    page.commands.getAllGenders = () => {
+        $.ajax({
+            type: "GET",
+            url: page.url.getAllGenders
+        }).done(function (data) {
+            $("#genders").html('');
+            data.forEach((item) => {
+                let str = `<label class="zOnI7" id="male"><span
+                                        class="_1HWTz">${item.name}</span><input value="${item.id}" type="radio" name="roomGendersRadio"><span
+                                        class="_30lzl"></span>
+                           </label>`;
+                $("#genders").append(str);
+            });
+        }).fail(function () {
+            showError('Error')
+        })
+    }
+
+    $(function () {
+        let wardId = [[${wardId}]];
+        let provinceName = [[${provinceName}]];
+        let locationName = [[${locationName}]];
+        let mess = [[${mess}]];
+        if (mess != null) {
+            showError(mess);
+            const myTimeout = setTimeout(redirectAllListPost, 1000);
+
+            function redirectAllListPost() {
+                location.href = App.DOMAIN;
+            }
+        } else if (wardId != null) {
+            filter.wardId = wardId;
+            console.log("có warDid")
+        } else if (provinceName != null && locationName != null) {
+            console.log("có provinceName")
+            filter.provinceName = provinceName;
+            filter.locationName = locationName;
+        }
+        filter.priceStarts = min;
+        filter.priceEnds = max;
+
+        let utilities = [];
+        $.each($("input[name='utilitiesCheckbox']:checked"), function () {
+            utilities.push(+$(this).val());
+        });
+        filter.utilities = utilities;
+        let categories = [];
+
+        $.each($("input[name='roomTypesCheckbox']:checked"), function () {
+            categories.push(+$(this).val());
+        });
+        filter.categories = categories;
+        filter.gender = +$('input[type="radio"][name="roomGendersRadio"]:checked').val();
+        doFilter(JSON.stringify(filter))
+    })
+
+    function paging(list) {
+        (function (name) {
+            var container = $('#pagination-' + name);
+            var sources = function () {
+                var result = [];
+                console.log("size " + list.length);
+                list.forEach(item => {
+                    result.push(item);
+                })
+                // for (var i = 1; i < 196; i++) {
+                //     result.push(i);
+                // }
+                return result;
+            }();
+            var options = {
+                dataSource: sources,
+                callback: function (response, pagination) {
+                    window.console && console.log(response, pagination);
+                    let str = '<ul>';
+                    $.each(response, function (index, item) {
+                        post = item;
+                        let typeRoom;
+                        switch (post.category.id) {
+                            case 1:
+                            case 2:
+                                typeRoom = "tr/phòng"
+                                break;
+                            case 3:
+                                typeRoom = "tr/người"
+                                break;
+                            case 4:
+                            case 5:
+                                typeRoom = "tr/căn"
+                                break;
+                        }
+
+                        function checkPrice(price) {
+                            if (price >= 1000000) {
+                                return price / 1000000;
+                            } else {
+                                return "<1";
+                            }
+                        }
+
+                        let price = checkPrice(post.rentHouse.price);
+                        let gender;
+                        if (post.rentHouse.gender.id == 1) {
+                            gender = "Nam/Nữ";
+                        } else {
+                            gender = post.rentHouse.gender.name;
+                        }
+
+                        str += `<li>
+                     <div class="nctjX"><a target="_blank" href="/room/${post.id}">
+                            <div class="X8svI _2DJkz">
+                                <div class="pcGxo">
+                                    <div class="_1Gm0b"><img
+                                            src="/resources/ohana/img/20c8373d39e30d04cde885686abc2987.png"
+                                            alt="verified-img" class="_1TPDO"></div>
+                                    <img src="${post.thumbnailUrl.fileUrl}"
+                                         alt="room-img"
+                                         class="_1IOeB">
+                                </div>
+                                <div class="_228LH">
+                                    <p class="_3xXyQ" >${post.title}</p>
+                                    <div class="_27rcQ">
+                                        <div class="_3piN7">
+                                            <div class="wpwoK"><span class="icon-nav-home"
+                                                                     style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+                                                   >${post.category.name}</span>
+                                                   <span
+                                                                     style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+                                                   >Sức chứa: ${post.rentHouse.capacity}</span></div>
+                                            <div class="_3TYbx"><span><span class="icon-nav-roomate"
+                                                                            style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"
+                                                                           >${gender}</span></span><span><span
+                                                    class="icon-squaremeter"
+                                                    style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"
+                                                   >${post.rentHouse.area}</span>m<sup>2</sup></span>
+                                            </div>
+                                            <div class="_1jHdY"><span class="icon-location"
+                                                                      style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+                                                    class="uKi2L"
+                                                   >${post.location.locationDetail}, ${post.location.wardName}, ${post.location.districtName}, ${post.location.provinceName}</span>
+                                            </div>
+                                        </div>
+                                        <div class="_1ezn1">
+                                            <span class="_36r7N">${price}</span>
+                                            <span class="_11LqE">${typeRoom}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a></div></li>
+                    `;
+                        // $(container).append(str);
+                    });
+                    str += '</ul>';
+                    container.prev().html(str);
+
+
+                }
+            };
+
+            //$.pagination(container, options);
+
+            container.addHook('beforeInit', function () {
+                window.console && console.log('beforeInit...');
+            });
+            container.pagination(options);
+
+            container.addHook('beforePageOnClick', function () {
+                window.console && console.log('beforePageOnClick...');
+                //return false
+            });
+            if (list.length == 0) {
+                $('#pagination-demo1').html("");
+                let str = `<ul><li><div class="nctjX"><div class="X8svI _2DJkz"> <div class="pcGxo"><div class="_228LH">
+                                Không có bài đăng nào phù hợp
+                            </div></div></div></div></li></ul>`;
+                $(container).append(str);
+            }
+        })('demo1');
+    }
+
+    // <ul>
+    //     <li>
+    //         <div className="nctjX"><a target="_blank" href="/room/10">
+    //             <div className="X8svI _2DJkz">
+    //                 <div className="pcGxo">
+    //                     <div className="_1Gm0b"><img src="/resources/ohana/img/20c8373d39e30d04cde885686abc2987.png"
+    //                                                  alt="verified-img" className="_1TPDO"></div>
+    //                     <img
+    //                         src="https://res.cloudinary.com/ohana123/image/upload/v1653353378/post_images/d682bce3-3ed7-4fb5-9575-f877f9f340a0.jpg"
+    //                         alt="room-img" className="_1IOeB">
+    //                 </div>
+    //                 <div className="_228LH">
+    //                     <p className="_3xXyQ">Trọ Nhất Nhất</p>
+    //                     <div className="_27rcQ">
+    //                         <div className="_3piN7">
+    //                             <div className="wpwoK"><span className="icon-nav-home"
+    //                                                          style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span>Phòng cho thuê</span>
+    //                                 <span style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span>Sức chứa: 3</span>
+    //                             </div>
+    //                             <div className="_3TYbx"><span><span className="icon-nav-roomate"
+    //                                                                 style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;">Nam/Nữ</span></span><span><span
+    //                                 className="icon-squaremeter"
+    //                                 style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;">50</span>m<sup>2</sup></span>
+    //                             </div>
+    //                             <div className="_1jHdY"><span className="icon-location"
+    //                                                           style="color: rgb(102, 102, 102); font-size: 24px; margin-right: 8px;"></span><span
+    //                                 className="uKi2L">45 Hoàng Hà, Phường An Tây, Thành phố Huế, Tỉnh Thừa Thiên Huế</span>
+    //                             </div>
+    //                         </div>
+    //                         <div className="_1ezn1">
+    //                             <span className="_36r7N">1</span>
+    //                             <span className="_11LqE">tr/phòng</span>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         </a></div>
+    //     </li>
+    // </ul>
+
+    $("#search").on('input', () => {
+        let valueSearch = $("#search").val();
+        $("#location").html("");
+        if (valueSearch.length > 2) {
+            $.ajax({
+                type: "GET",
+                url: App.BASE_URL_API + "/posts/get-data-search/" + valueSearch
+            }).done(function (data) {
+                console.log(data);
+                let locationDetail;
+                data.forEach(item => {
+                    if (item.wardName == null) {
+                        locationDetail = item.districtName;
+                    } else {
+                        locationDetail = item.wardName;
+                    }
+                    let str = `<a href="/view-all?provinceName=${item.provinceName}&locationName=${locationDetail}">
+                                    <li class="li-search" className="J_X1w">${item.locationDetail}</li>
+                                </a>
+                             `;
+                    $("#location").append(str);
+                })
+            }).fail(function () {
+                showError('Error')
+            })
+        }
+    })
+    let specifiedElement = document.getElementById('search');
+    //I'm using "click" but it works with any event
+    document.addEventListener('click', function (event) {
+        let isClickInside = specifiedElement.contains(event.target);
+
+        if (!isClickInside) {
+            $("#search").val("");
+            $("#location").html("");
+        }
+    });
+
+</script>
+</body>
+
+</html>

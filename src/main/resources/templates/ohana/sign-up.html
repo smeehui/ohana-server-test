@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)/ -->
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+
+    <th:block th:replace="/ohana/layout/head :: head('Ohana - Tìm ở ghép, phòng trọ siêu nhanh')"/>
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="/resources/ohana/sign-in/"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/bootstrap-5.0.2/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/fontawesome5.15.4/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="/resources/ohana/sign-in/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/resources/ohana/sign-in/css/style-show-password.css">
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1057.0" data-gr-ext-installed="" cz-shortcut-listen="true">
+<div id="root">
+    <div class="app">
+        <div class="_3bjUj">
+            <!--header-->
+            <th:block th:replace="/ohana/layout/header :: header(${userLogin})"/>
+
+
+            <div class="_1El-8">
+
+                <div class="container-login100">
+                    <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
+                        <form class="login100-form validate-form" method="post"
+                              id="register-form" th:object="${user}">
+                                    <span class="login100-form-title p-b-37">
+                                        Đăng ký
+                                    </span>
+                            <div class="wrap-input100 validate-input m-b-20"
+                                 data-validate="Nhập họ và tên">
+                                <input class="input100" type="text" name="fullName"
+                                       placeholder="Nhập tên người dùng" th:field="*{fullName}">
+                                <span class="focus-input100"></span>
+                            </div>
+                            <label id="checkPhoneOrEmail"></label>
+                            <div class="wrap-input100 validate-input m-b-20"
+                                 data-validate="Nhập số điện thoại hoặc email">
+                                <input class="input100" type="text" name="username" id="phoneOrEmail"
+                                       placeholder="Nhập số điện thoại hoặc email" th:field="*{phoneOrEmail}">
+                                <span class="focus-input100"></span>
+                            </div>
+                            <label id="checkPassword"></label>
+                            <div class="wrap-input100 validate-input m-b-25" data-validate="Nhập mật khẩu">
+                                <span class="btn-show-pass">
+							        <i class="zmdi zmdi-eye"></i>
+						        </span>
+                                <input class="input100" type="password" name="pass" id="password"
+                                       placeholder="Nhập mật khẩu" th:field="*{password}">
+                                <span class="focus-input100"></span>
+                            </div>
+
+
+                            <label id="checkConfirmPassword"></label>
+                            <div class="wrap-input100 validate-input m-b-25" data-validate="Nhập lại mật khẩu">
+                                 <span class="btn-show-pass">
+							        <i class="zmdi zmdi-eye"></i>
+						        </span>
+                                <input class="input100" type="password" name="pass" id="confirmPassword"
+                                       placeholder="Nhập lại mật khẩu">
+                                <span class="focus-input100"></span>
+                            </div>
+                            <!-- Checkbox -->
+                            <label id="checkD"></label>
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="termsCheckbox"
+                                           name="termsCheckbox">
+                                    <label class="custom-control-label text-muted" for="termsCheckbox">Tôi đồng ý với
+                                        điều khoản và chính sách</label>
+                                </div>
+                            </div>
+                            <!-- End Checkbox -->
+                            <div class="container-login100-form-btn">
+                                <button type="submit" class="login100-form-btn">
+                                    Đăng ký
+                                </button>
+                            </div>
+
+                            <div class="text-center p-t-57 p-b-20">
+                                <span class="txt1">
+                                  Hoặc đăng nhập với
+                                </span>
+                            </div>
+
+                            <div class="flex-c p-b-50">
+                                <a href="#" class="login100-social-item">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+
+                                <!--                                <a href="#" class="login100-social-item">-->
+                                <!--                                    <img src="/resources/ohana/sign-in/images/icons/icon-google.png" alt="GOOGLE">-->
+                                <!--                                </a>-->
+
+                            </div>
+                            <div class="flex-c p-b-50">
+                                <div id="g_id_onload"
+                                     data-client_id="809100511304-qcmbmqj4m2njft9vs8deo2791s6miodm.apps.googleusercontent.com"
+                                     data-login_uri="http://localhost:8080/sign-in"
+                                     data-auto_prompt="false">
+                                </div>
+                                <div class="g_id_signin"
+                                     data-type="standard"
+                                     data-size="large"
+                                     data-theme="outline"
+                                     data-text="sign_in_with"
+                                     data-shape="rectangular"
+                                     data-logo_alignment="left">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+<!--                    <div id="message" class="warning"-->
+<!--                         style="color:red;font-style:italic; z-index: 999999; top: 20px; right: 20px; position: fixed">ahihi-->
+<!--                    </div>-->
+                </div>
+            </div>
+            <!--footer-->
+            <th:block th:replace="/ohana/layout/footer :: footer"/>
+        </div>
+    </div>
+</div>
+<th:block th:replace="/ohana/layout/script :: script"/>
+<!-- <script type="text/javascript"
+src="/runtime.0a67c7ac13035fb53d78.js.download"></script>
+<script type="text/javascript"
+src="/vendors.0a67c7ac13035fb53d78.js.download"></script>
+<script type="text/javascript"
+src="/main.0a67c7ac13035fb53d78.js.download"></script> -->
+
+<!--===============================================================================================-->
+<script src="/resources/ohana/sign-in/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="/resources/ohana/sign-in/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="/resources/ohana/sign-in/vendor/bootstrap/js/popper.js"></script>
+<script src="/resources/ohana/sign-in/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="/resources/ohana/sign-in/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="/resources/ohana/sign-in/vendor/daterangepicker/moment.min.js"></script>
+<script src="/resources/ohana/sign-in/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="/resources/ohana/sign-in/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="/resources/ohana/sign-in/js/main.js"></script>
+<script th:inline="javascript">
+
+    let messageExits = [[${messageExits}]];
+    if (messageExits != null) {
+        showWarning(messageExits);
+        $("#phoneOrEmail").addClass('error');
+    }
+    var showPass = 0;
+    $('.btn-show-pass').on('click', function(){
+        if(showPass == 0) {
+            $(this).next('input').attr('type','text');
+            $(this).find('i').removeClass('zmdi-eye');
+            $(this).find('i').addClass('zmdi-eye-off');
+            showPass = 1;
+        }
+        else {
+            $(this).next('input').attr('type','password');
+            $(this).find('i').addClass('zmdi-eye');
+            $(this).find('i').removeClass('zmdi-eye-off');
+            showPass = 0;
+        }
+
+    });
+</script>
+<!--<script>-->
+
+<!--    $("#message").delay(4000).fadeIn(400);-->
+
+<!--</script>-->
+</body>
+
+
+</html>

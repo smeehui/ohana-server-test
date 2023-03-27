@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <!-- Title -->
+    <title>Add User | Front - Admin &amp; Dashboard Template</title>
+
+    <th:block th:include="dashboard/layout/head :: head"/>
+
+</head>
+
+<body class="footer-offset">
+
+<!-- ONLY DEV -->
+
+<!-- Builder -->
+<th:block th:include="dashboard/layout/builder :: builder"/>
+<!-- End Builder Toggle -->
+
+<!-- JS Preview mode only -->
+<th:block th:include="dashboard/layout/header :: header"/>
+
+<!--SideBar-->
+<th:block th:include="dashboard/layout/sideBar :: sideBar"/>
+<!--End SideBar-->
+
+<!--  Sidebar Compact-->
+<th:block th:include="dashboard/layout/sidebarCompact :: sidebarCompact"/>
+<!--  End Sidebar Compact-->
+
+<!-- END ONLY DEV -->
+
+<!-- Search Form -->
+<div id="searchDropdown" class="hs-unfold-content dropdown-unfold search-fullwidth d-md-none">
+    <form class="input-group input-group-merge input-group-borderless">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <i class="tio-search"></i>
+            </div>
+        </div>
+
+        <input class="form-control rounded-0" type="search" placeholder="Search in front" aria-label="Search in front">
+
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <div class="hs-unfold">
+                    <a class="js-hs-unfold-invoker" href="javascript:;" data-hs-unfold-options='{
+                       "target": "#searchDropdown",
+                       "type": "css-animation",
+                       "animationIn": "fadeIn",
+                       "hasOverlay": "rgba(46, 52, 81, 0.1)",
+                       "closeBreakpoint": "md"
+                     }'>
+                        <i class="tio-clear tio-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- End Search Form -->
+
+<!-- ========== HEADER ========== -->
+
+<!-- ========== END HEADER ========== -->
+
+<!-- ========== MAIN CONTENT ========== -->
+<!-- Navbar Vertical -->
+
+<!-- End Navbar Vertical -->
+
+<main id="content" role="main" class="main">
+    <!-- Content -->
+    <div class="content container-fluid">
+        <!-- Step Form -->
+        <form class="js-step-form py-md-5" data-hs-step-form-options='{
+                "progressSelector": "#addUserStepFormProgress",
+                "stepsSelector": "#addUserStepFormContent",
+                "endSelector": "#addUserFinishBtn",
+                "isValidate": false
+              }'>
+            <div class="row justify-content-lg-center">
+                <div class="col-lg-8">
+                    <!-- Step -->
+
+                    <!-- End Step -->
+
+                    <!-- Content Step Form -->
+                    <div id="addUserStepFormContent">
+                        <!-- Card -->
+                        <div id="addUserStepProfile" class="card card-lg active">
+                            <!-- Body -->
+                            <div class="card-body">
+                                <!-- Form Group -->
+                                <div class="row form-group">
+                                    <label for="fullName" class="col-sm-3 col-form-label input-label">Icon <i
+                                            class="tio-help-outlined text-body ml-1" data-toggle="tooltip"
+                                            data-placement="top"
+                                            title="Displayed on public forums, such as Front."></i></label>
+
+                                    <div class="col-sm-9">
+                                        <div class="input-group input-group-sm-down-break">
+                                            <input type="text" class="form-control" name="fullName" id="icon"
+                                                   placeholder="Clarice">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Form Group -->
+                                <!-- Form Group -->
+                                <div class="row form-group">
+                                    <label for="fullName" class="col-sm-3 col-form-label input-label">Tên <i
+                                            class="tio-help-outlined text-body ml-1" data-toggle="tooltip"
+                                            data-placement="top"
+                                            title="Displayed on public forums, such as Front."></i></label>
+
+                                    <div class="col-sm-9">
+                                        <div class="input-group input-group-sm-down-break">
+                                            <input type="text" class="form-control" name="fullName" id="fullName"
+                                                   placeholder="Clarice">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Form Group -->
+                            </div>
+                            <!-- End Body -->
+
+                            <!-- Footer -->
+                            <div class="card-footer d-flex justify-content-end align-items-center">
+                                <button type="submit" id="btnCreate" class="btn btn-outline-primary">
+                                    Thêm
+                                </button>
+                            </div>
+                            <!-- End Footer -->
+                        </div>
+                        <!-- End Card -->
+                    </div>
+                    <!-- End Content Step Form -->
+                </div>
+            </div>
+            <!-- End Row -->
+        </form>
+        <!-- End Step Form -->
+    </div>
+    <!-- End Content -->
+
+    <!-- Footer -->
+
+    <th:block th:include="dashboard/layout/footer :: footer"/>
+
+    <!-- End Footer -->
+</main>
+<!-- ========== END MAIN CONTENT ========== -->
+
+<!-- ========== SECONDARY CONTENTS ========== -->
+
+<th:block th:include="dashboard/layout/secondaryContent :: secondaryContent"/>
+
+<!-- ========== END SECONDARY CONTENTS ========== -->
+
+<th:block th:include="dashboard/layout/script :: script"/>
+
+<!-- JS Plugins Init. -->
+<script>
+    $(document).on('ready', function () {
+        // ONLY DEV
+        // =======================================================
+
+        if (window.localStorage.getItem('hs-builder-popover') === null) {
+            $('#builderPopover').popover('show')
+                .on('shown.bs.popover', function () {
+                    $('.popover').last().addClass('popover-dark')
+                });
+
+            $(document).on('click', '#closeBuilderPopover', function () {
+                window.localStorage.setItem('hs-builder-popover', true);
+                $('#builderPopover').popover('dispose');
+            });
+        } else {
+            $('#builderPopover').on('show.bs.popover', function () {
+                return false
+            });
+        }
+
+        // END ONLY DEV
+        // =======================================================
+
+
+        // BUILDER TOGGLE INVOKER
+        // =======================================================
+        $('.js-navbar-vertical-aside-toggle-invoker').click(function () {
+            $('.js-navbar-vertical-aside-toggle-invoker i').tooltip('hide');
+        });
+
+
+        // INITIALIZATION OF MEGA MENU
+        // =======================================================
+        var megaMenu = new HSMegaMenu($('.js-mega-menu'), {
+            desktop: {
+                position: 'left'
+            }
+        }).init();
+
+
+        // INITIALIZATION OF NAVBAR VERTICAL NAVIGATION
+        // =======================================================
+        var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
+
+
+        // INITIALIZATION OF TOOLTIP IN NAVBAR VERTICAL MENU
+        // =======================================================
+        $('.js-nav-tooltip-link').tooltip({boundary: 'window'})
+
+        $(".js-nav-tooltip-link").on("show.bs.tooltip", function (e) {
+            if (!$("body").hasClass("navbar-vertical-aside-mini-mode")) {
+                return false;
+            }
+        });
+
+
+        // INITIALIZATION OF UNFOLD
+        // =======================================================
+        $('.js-hs-unfold-invoker').each(function () {
+            var unfold = new HSUnfold($(this)).init();
+        });
+
+
+        // INITIALIZATION OF FORM SEARCH
+        // =======================================================
+        $('.js-form-search').each(function () {
+            new HSFormSearch($(this)).init()
+        });
+
+
+        // INITIALIZATION OF FILE ATTACH
+        // =======================================================
+        $('.js-file-attach').each(function () {
+            var customFile = new HSFileAttach($(this)).init();
+        });
+
+
+        // INITIALIZATION OF STEP FORM
+        // =======================================================
+        $('.js-step-form').each(function () {
+            var stepForm = new HSStepForm($(this), {
+                finish: function () {
+                    $("#addUserStepFormProgress").hide();
+                    $("#addUserStepFormContent").hide();
+                    $("#successMessageContent").show();
+                }
+            }).init();
+        });
+
+
+        // INITIALIZATION OF MASKED INPUT
+        // =======================================================
+        $('.js-masked-input').each(function () {
+            var mask = $.HSCore.components.HSMask.init($(this));
+        });
+
+
+        // INITIALIZATION OF SELECT2
+        // =======================================================
+        $('.js-select2-custom').each(function () {
+            var select2 = $.HSCore.components.HSSelect2.init($(this));
+        });
+
+
+        // INITIALIZATION OF ADD INPUT FILED
+        // =======================================================
+        $('.js-add-field').each(function () {
+            new HSAddField($(this), {
+                addedField: function () {
+                    $('.js-add-field .js-select2-custom-dynamic').each(function () {
+                        var select2dynamic = $.HSCore.components.HSSelect2.init($(this));
+                    });
+                }
+            }).init();
+        });
+    });
+</script>
+
+<!-- IE Support -->
+<script>
+    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="./assets/vendor/babel-polyfill/polyfill.min.js"><\/script>');
+</script>
+
+</body>
+
+</html>

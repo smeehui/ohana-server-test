@@ -1,0 +1,106 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:block th:fragment="header (userLogin)">
+    <div class="_1akvT">
+        <div class="_3bjUj">
+            <div class="_3Ob4b">
+                <ul class="m-3">
+                   <span class="_1vH0j">
+                     <a href="/">
+                          <i class="fas fa-home"
+                             style="color: rgb(255, 255, 255); font-size: 21px;"></i>
+                          <span class="_3Uk1Q _1UWQe">Trang chủ</span>
+                      </a>
+                   </span>
+                </ul>
+            </div>
+            <!-- distance -->
+            <div class="_2k8vl">
+
+            </div>
+
+            <div class="_3Ob4b">
+                <ul class="m-3">
+                    <!--                    <span class="_1vH0j">-->
+                    <!--                         <a href="/notification">-->
+                    <!--                            <i class="far fa-bell" style="color: rgb(255, 255, 255); font-size: 21px;"></i>-->
+                    <!--                            <span class="_3Uk1Q _1UWQe">Thông báo</span>-->
+                    <!--                         </a>-->
+                    <!--                    </span>-->
+                    <span class="_1vH0j">
+                         <a href="/list-post">
+                                    <i class="fas fa-tasks" style="color: rgb(255, 255, 255); font-size: 21px;"></i>
+                                    <span class="_3Uk1Q _1UWQe">Quản lí tin</span>
+                         </a>
+                    </span>
+                    <span class="_1vH0j">
+                         <a href="/post-room">
+                            <i class="fas fa-plus" style="color: rgb(255, 255, 255); font-size: 21px;"></i>
+                            <span class="_3Uk1Q _1UWQe">Đăng tin</span>
+                         </a>
+                    </span>
+
+                    <th:block th:unless="${userLogin}!=null">
+                        <span  class="_1vH0j">
+                          <a href="/sign-in">
+                                    <i class="far fa-user" style="color: rgb(255, 255, 255); font-size: 21px;"></i>
+                                    <span class="_3Uk1Q _1UWQe">Đăng nhập</span>
+                          </a>
+                    </span>
+                    </th:block>
+                </ul>
+                <th:block th:if="${userLogin}!=null">
+                    <!--                        <span class="_1vH0j">-->
+                    <!--                          <a>-->
+                    <!--                                    <span class="_3Uk1Q _1UWQe" th:text="${userLogin.fullName}"></span>-->
+                    <!--                                <img src="/resources/image/22-223863_no-avatar-png-circle-transparent-png.png"-->
+                    <!--                                     style="color: rgb(255, 255, 255); width: 30px; height: 30px; border-radius: 30px;">-->
+                    <!--                                    </img>-->
+                    <!--                          </a>-->
+                    <!--                             <ul class="dropdown-menu">-->
+                    <!--                                        <a title=" Đăng xuất" href="/sign-out" class="btn-logout">-->
+                    <!--                                            Đăng xuất-->
+                    <!--                                        </a>-->
+                    <!--                                 </li>-->
+                    <!--                                </ul>-->
+                    <!--                    </span>-->
+
+                    <span>
+                        <a type="button" class="rounded-circle"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+<!--                             <th:block th:if="${userLogin.thumbnailUrl}!=null">-->
+<!--                                  <img style="-->
+<!--                                width: 30px;-->
+<!--                                height: 30px;"-->
+<!--                                       class="rounded-circle"-->
+<!--                                       th:src="${userLogin.thumbnailUrl}"-->
+<!--                                       alt="Image Description">-->
+<!--                             </th:block>-->
+                            <th:block th:unless="${userLogin.thumbnailUrl}!=null">
+                                  <img style="
+                                width: 30px;
+                                height: 30px;"
+                                       class="rounded-circle"
+                                       src="/resources/image/22-223863_no-avatar-png-circle-transparent-png.png"
+                                       alt="Image Description">
+                             </th:block>
+
+                        <span style="color:white" th:text="${userLogin.fullName}"></span>
+                            </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Hồ sơ của tôi</a></li>
+                        <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/sign-out">Đăng xuất</a></li>
+                    </ul>
+                    </span>
+                </th:block>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

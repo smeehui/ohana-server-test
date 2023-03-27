@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/resources/bootstrap-5.0.2/css/bootstrap.min.css">
+    <th:block th:replace="/ohana/layout/head :: head('Ohana - Tìm ở ghép, phòng trọ siêu nhanh')"/>
+
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1057.0" data-gr-ext-installed="" cz-shortcut-listen="true">
+<div class="container">
+
+    <div class="_3bjUj">
+
+        <!--header-->
+        <th:block th:replace="/ohana/layout/header :: header(${userLogin})"/>
+    </div>
+
+    <div class="body ">
+        <div class="row align-items-start">
+            <br>
+            <th:block th:replace="/ohana/layout/list/status-post :: status-post"/>
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Understood</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <label id="notification"></label>
+            <table class="table align-middle mb-0 bg-white" id="tbPost" style="width: 1080px">
+                <thead class="bg-light">
+
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<th:block th:replace="/ohana/layout/footer :: footer"/>
+
+<th:block th:replace="/ohana/layout/script :: script"/>
+<script>
+    let page = {
+        url: {
+            getAllPostPublished: App.BASE_URL_API + "/posts/list-post-published",
+            getAllPendingReview: App.BASE_URL_API + "/posts/list-post-pending-review",
+            getAllRefused: App.BASE_URL_API + "/posts/list-post-refused",
+            getPostById: App.BASE_URL_API + "/posts/",
+            // getAllCategories: App.BASE_URL_API + "/categories",
+            // getAllUtilities: App.BASE_URL_API + "/utilities",
+            getAllProvinces: App.BASE_URL_PROVINCE,
+            doCreatePost: App.BASE_URL_API + "/posts/postNews",
+            doUpdateStatus: App.BASE_URL_API + "/posts/edit-status-rent-house",
+            doDelete: App.BASE_URL_API + "/posts/delete",
+
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        initializeControlEvent: {}
+
+    }
+    let post = new Post();
+    let user = new User();
+    let locationResult = new LocationRegion();
+    let rentHouse = new RentHouse();
+
+    $("#btnPostPublished").on('click', function () {
+        page.commands.getAllPostPublished();
+    })
+
+    $("#btnPendingReview").on('click', function () {
+        page.commands.getAllPendingReview();
+    })
+
+    $("#btnRefused").on('click', function () {
+        page.commands.getAllRefused();
+    })
+
+    $(".btn-link").on("click", function () {
+        let id = $(this).data("id");
+        getPostById(id).then(function () {
+        })
+    })
+
+
+    function editPost() {
+        $(".btn-edit").on('click', function () {
+            let id = $(this).data("id");
+            alert(id)
+        })
+    }
+
+
+    function getPostById(postId) {
+        return $.ajax({
+            type: "GET",
+            url: page.url.getPostById + "/" + postId,
+        }).done(function (data) {
+        }).fail(function () {
+            showError("Get Post Fail")
+        })
+    }
+
+
+    page.commands.getAllPostPublished = () => {
+        $.ajax({
+            type: "GET",
+            url: page.url.getAllPostPublished
+        }).done(function (data) {
+            $("#notification").html('');
+            let srt = ` <label id="notification">Tổng số :${data.length}</label>`
+            $("#notification").prepend(srt);
+            $("#tbPost thead").html('');
+            let tr = `<tr>
+                            <th class= "col-2">Tên bài đăng</th>
+                            <th class= "col-3">Địa chỉ</th>
+                            <th class= "col-1">Giá</th>
+                            <th class= "col-2">Ngày đăng</th>
+                             <th class= "col-2">Đường dẫn</th>
+                            <th colspan="2" class= "col-2">Trạng thái</th>
+                             <th class= "col-2"></th>
+                       </tr>`;
+            $("#tbPost thead").prepend(tr);
+            $("#tbPost tbody").html('');
+            let sizeDefault = 10;
+            if (data.length < sizeDefault) {
+                for (let i = 0; i < 10 - data.length; i++) {
+                    let str = `</br>`;
+                    $("#tbPost tbody").prepend(str);
+                }
+            }
+            data.forEach((item) => {
+                post = item;
+                user = post.user;
+                locationResult = post.location;
+                rentHouse = post.rentHouse;
+                if (rentHouse.status) {
+                    rentHouse.status = "Hết phòng"
+                } else {
+                    rentHouse.status = "Còn phòng"
+                }
+                let str = `  <tr id="tr_${post.id}">
+                    <td class= "col-2">
+                        <div class="d-flex align-items-center">
+                            <img src="${post.thumbnailUrl.fileUrl}" alt=""
+                                 style="width: 45px; height: 45px" class="rounded-circle"/>
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">${post.title}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class= "col-3">
+                        <p class="fw-normal mb-1">${locationResult.locationDetail}, ${locationResult.wardName}, ${locationResult.districtName}, ${locationResult.provinceName}</p>
+                    </td>
+
+                    <td class= "col-1">
+                        <p class="fw-normal mb-1">${rentHouse.price}</p>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1">${moment(post.createdAt).format("DD-MM-yyyy")}</p>
+                    </td>
+                    <td class= "col-2">
+                    <a href="/room/${post.id}">
+                      <i style="text-decoration:none" class="far fa-arrow-alt-circle-right" ></i>
+                    </a>
+                    <td class= "col-2">
+                        <a type="button" class="btn btn-outline-success btn-status" data-id="${post.id}"
+                         >
+                            ${rentHouse.status}
+                        </a>
+                    </td>
+                    <td class= "col-2">
+                        <a href="/edit/${post.id}" type="button" class="btn btn-outline-primary btn-edit" >
+                            Sửa
+                        </a>
+                    </td>
+                    <td class= "col-2">
+                        <a type="button" class="btn btn-outline-danger btn-delete" data-id="${post.id}" >
+                            Xóa
+                        </a>
+                    </td>
+                </tr>`;
+                $("#tbPost tbody").prepend(str);
+            });
+
+            // editPost();
+            handlerShowConfirmRefused();
+            handlerDelete();
+        }).fail(function () {
+            showError('Error')
+        })
+    }
+
+    page.commands.getAllPendingReview = () => {
+        $.ajax({
+            type: "GET",
+            url: page.url.getAllPendingReview
+        }).done(function (data) {
+            $("#notification").html('');
+            let srt = ` <label id="notification">Tổng số :${data.length}</label>`
+            $("#notification").prepend(srt);
+            $("#tbPost thead").html('');
+            let tr = `
+                <tr>
+                    <th class= "col-3">Tên bài đăng</th>
+                    <th class= "col-4">Địa chỉ</th>
+                    <th class= "col-2">Giá</th>
+                    <th class= "col-3">Ngày đăng</th>
+
+                </tr>`;
+            $("#tbPost thead").prepend(tr);
+            $("#tbPost tbody").html('');
+            let sizeDefault = 10;
+            if (data.length < sizeDefault) {
+                for (let i = 0; i < 10 - data.length; i++) {
+                    let str = `</br>`;
+                    $("#tbPost tbody").prepend(str);
+                }
+            }
+            data.forEach((item) => {
+                post = item;
+                user = post.user;
+                locationResult = post.location;
+                rentHouse = post.rentHouse;
+                let str = `     <tr>
+                    <td class= "col-3">
+                        <div class="d-flex align-items-center">
+                            <img src="${post.thumbnailUrl.fileUrl}" alt=""
+                                 style="width: 45px; height: 45px" class="rounded-circle"/>
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">${post.title}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class= "col-4">
+                               <p class="fw-normal mb-1">${locationResult.locationDetail}, ${locationResult.wardName}, ${locationResult.districtName}, ${locationResult.provinceName}</p>
+                    </td>
+                     <td class= "col-2">
+                        <p class="fw-normal mb-1">${rentHouse.price}</p>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1">${moment(post.createdAt).format("DD-MM-yyyy")}</p>
+                    </td>
+                </tr>`;
+                $("#tbPost tbody").prepend(str);
+            });
+
+        }).fail(function () {
+            showError('Error')
+        })
+    }
+
+    page.commands.getAllRefused = () => {
+        $.ajax({
+            type: "GET",
+            url: page.url.getAllRefused
+        }).done(function (data) {
+            $("#notification").html('');
+            let srt = ` <label id="notification">Tổng số :${data.length}</label>`
+            $("#notification").prepend(srt);
+            $("#tbPost thead").html('');
+            let tr = `<tr>
+                <th class= "col-3">Tên bài đăng</th>
+                <th class= "col-4">Địa chỉ</th>
+                <th class= "col-2">Giá</th>
+                <th class= "col-3">Ngày đăng</th>
+
+           </tr>`;
+            $("#tbPost thead").prepend(tr);
+            $("#tbPost tbody").html('');
+            let sizeDefault = 10;
+            if (data.length < sizeDefault) {
+                for (let i = 0; i < 10 - data.length; i++) {
+                    let str = `</br>`;
+                    $("#tbPost tbody").append(str);
+                }
+            }
+            data.forEach((item) => {
+                post = item;
+                user = post.user;
+                locationResult = post.location;
+                rentHouse = post.rentHouse;
+                let str = `     <tr>
+                    <td class= "col-3">
+                        <div class="d-flex align-items-center">
+                            <img src="${post.thumbnailUrl.fileUrl}" alt=""
+                                 style="width: 45px; height: 45px" class="rounded-circle"/>
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">${post.title}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class= "col-4">
+                                <p class="fw-normal mb-1">${locationResult.locationDetail}, ${locationResult.wardName}, ${locationResult.districtName}, ${locationResult.provinceName}</p>
+                    </td>
+                     <td class= "col-2">
+                        <p class="fw-normal mb-1">${rentHouse.price}</p>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1">${moment(post.createdAt).format("DD-MM-yyyy")}</p>
+                    </td>
+                </tr>`;
+                $("#tbPost tbody").prepend(str);
+            });
+
+        }).fail(function () {
+            showError('Error')
+        })
+    }
+
+
+    function handlerShowConfirmRefused() {
+        $("a.btn-status").on('click', function () {
+            let element = this;
+            let postId = +$(this).data("id");
+            Swal.fire({
+                title: 'Cập nhật trạng thái phòng',
+                text: "Bạn có muốn thay đổi trạng thái phòng không?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Vâng, Tôi đồng ý!',
+                cancelButtonText: 'Huỷ'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    doUpdateStatus(postId, element);
+                }
+
+            })
+        })
+
+    }
+
+    function handlerDelete() {
+        $("a.btn-delete").on('click', function () {
+            let postId = +$(this).data("id");
+            Swal.fire({
+                title: 'Xóa bài viết',
+                text: "Bạn có muốn xóa bài viết không?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Vâng, Tôi đồng ý!',
+                cancelButtonText: 'Huỷ'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    doDelete(postId);
+                }
+
+            })
+        })
+
+    }
+
+
+    function doUpdateStatus(postId, element) {
+        $.ajax({
+            type: "PUT",
+            url: page.url.doUpdateStatus + "/" + postId
+        }).done(function (data) {
+            if (data.rentHouse.status) {
+                element.innerText = "Hết phòng"
+            } else {
+                element.innerText = "Còn phòng"
+            }
+        }).fail(function () {
+            showErrors("Không thể cập nhật trạng thái lúc này")
+        })
+    }
+
+    function doDelete(postId) {
+        $.ajax({
+            type: "DELETE",
+            url: page.url.doDelete + "/" + postId,
+        }).done(function () {
+            $("#tr_" + postId).remove();
+            Swal.fire(
+                'Xóa!',
+                'Xoá bài viết thành công.',
+                'success'
+            )
+            // showSuccess("hf")
+        }).fail(function () {
+            Swal.fire({
+                position: 'mid-center',
+                title: 'Rất tiếc bạn không thể xoá bài viết này',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+        })
+    }
+
+    page.loadData = () => {
+        page.commands.getAllPendingReview();
+    }
+
+    $(function () {
+        page.loadData();
+
+    })
+</script>
+</body>
+
+</html>
