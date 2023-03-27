@@ -20,7 +20,8 @@ import java.util.Optional;
 
 @RestController
 //@SessionAttribute("cart")
-@RequestMapping("/api/post")
+@RequestMapping("/api/posts")
+@CrossOrigin("http://localhost:5173")
 
 public class PostRestController {
 
@@ -31,6 +32,11 @@ public class PostRestController {
     public ResponseEntity<?> getPost() {
         List<PostResult> posts = postService.findAllByStatus(StatusPost.PUBLISHED);
         return new ResponseEntity<>(posts, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAllPost(){
+        return new ResponseEntity<>(postService.findAll(),HttpStatus.OK);
     }
 
     @GetMapping("/unapproved")
